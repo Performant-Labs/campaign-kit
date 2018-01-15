@@ -1,0 +1,22 @@
+{#
+/**
+ * @file campaign_update.html.twig
+ * Default theme implementation to present Campaign update data.
+ *
+ * This template is used when viewing Campaign update pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_campaign_update()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('campaign_update') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -1,0 +1,1 @@
+Documentation is located at https://www.gitbook.com/book/performantlabs/campaign-kit

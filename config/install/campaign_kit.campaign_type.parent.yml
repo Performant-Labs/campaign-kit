@@ -1,0 +1,6 @@
+uuid: 6f99f8b9-6f68-4793-b732-deb8f303d9fd
+langcode: en
+status: true
+dependencies: {  }
+id: parent
+label: 'Parent Campaign'

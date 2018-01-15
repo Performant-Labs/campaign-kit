@@ -1,0 +1,125 @@
+
+campaign_kit.campaign_kit_controller:
+  path: '/campaign_kit/admin_page'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::campaignKitPage'
+    _title: 'Campaign Kit'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.donate_form_campaign:
+  path: '/campaign/{campaignId}/donate'
+  defaults:
+    _form: '\Drupal\campaign_kit\Form\DonateForm'
+    _title: 'DonateForm'
+  requirements:
+    _access: 'TRUE'
+
+campaign_kit.donate_form_campaign_child:
+  path: '/campaign/{campaignId}/child/{campaignChildId}/donate'
+  defaults:
+    _form: '\Drupal\campaign_kit\Form\DonateForm'
+    _title: 'DonateForm'
+  requirements:
+    _access: 'TRUE'
+
+campaign_kit.donation_service_controller_save_campaign:
+  path: '/campaign/getCampaign'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationServiceController::saveCampaign'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_view_campaign_entity:
+  path: '/campaign/{campaignId}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::viewCampaign'
+    _title_callback: '\Drupal\campaign_kit\Controller\DonationGoalController::getCampaignTitle'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_view_campaign_child_entity:
+  path: '/campaign/{campaignParentId}/child/{campaignChildId}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::viewCampaignChild'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_donation_controller_hello:
+  path: '/campaign_kit/hello2/{name}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\CampaignDonationController::hello'
+    _title: 'name'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_badge_page:
+  path: '/campaign/badge'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::badge'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_add_child_page:
+  path: '/campaign/{campaignParentId}/child/add'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::addChild'
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_thank_you_id_campaign:
+  path: '/campaign/{campaignId}/thank-you/{campaignDonationId}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::thankYouId'
+    _title: "Thank you page"
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.campaign_kit_controller_thank_you_child_id_campaign:
+  path: '/campaign/{campaignParentId}/child/{campaignChildId}/thank-you/{campaignDonationId}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\DonationGoalController::thankYouChild'
+    _title: "Thank you child page"
+  requirements:
+    _permission: 'access content'
+
+campaign_kit.payment_plugin_form:
+  path: '/campaign/form/register-plugin'
+  defaults:
+    _form: '\Drupal\campaign_kit\Form\PaymentPluginForm'
+    _title: 'PaymentPluginForm'
+  requirements:
+    _access: 'TRUE'
+# Just information page
+campaign_kit.payment_plugin_get_plugin:
+  path: '/payment_processor/get-paypal'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\PaymentController::getPlugins'
+    _title: 'PayPal'
+  requirements:
+    _access: 'TRUE'
+# Page to edit de plugin and save it in 'config' table
+campaign_kit.payment_processor_form:
+  path: '/campaign_kit/plugin/{pluginId}/edit'
+  defaults:
+    _form: '\Drupal\campaign_kit\Form\PaymentProcessorForm'
+    _title: 'PaymentProcessorForm'
+  requirements:
+    _access: 'TRUE'
+
+campaign_kit.payment_processor_ipn:
+  path: '/payment_processor_ipn/{name}'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\IPNController::registerPayment'
+    _title: 'IPNController'
+  requirements:
+    _access: 'TRUE'
+
+campaign_kit.payment_processor_ipn_notification:
+  path: '/payment_processor_ipn/notification/ipn'
+  defaults:
+    _controller: '\Drupal\campaign_kit\Controller\IPNController::savePayment'
+    _title: 'Notification'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'

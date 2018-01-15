@@ -1,0 +1,348 @@
+<?php
+
+/**
+ * @file
+ * Contains campaign_kit_demo.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+//Added
+use Drupal\Core\Datetime\DrupalDateTime;
+use \Drupal\campaign_kit\Entity\Campaign;
+use \Drupal\campaign_kit\Entity\CampaignDonation;
+use \Drupal\campaign_kit\Entity\CampaignUpdate;
+
+/**
+ * Implements hook_help().
+ */
+function campaign_kit_demo_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the campaign_kit_demo module.
+    case 'help.page.campaign_kit_demo':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Demonstration of Campaign Kit. See https://performantlabs.gitbooks.io/campaign-kit/content for complete documentation.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function campaign_kit_demo_theme() {
+  return [
+    'campaign_kit_demo' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_install().
+ */
+function campaign_kit_demo_install() {
+  /*
+  $source = '/node/' . $node->get('nid')->value;
+  \Drupal::service('path.alias_storage')->save($source, '/my-page', 'en');
+  */
+
+  // Create a Campaign Parent entity
+  $destination = 'public://campaign_kit_demo-images-2017';
+  file_prepare_directory($destination, FILE_CREATE_DIRECTORY);
+
+  // Validating image for standalone campaign
+  $imgSourceStandalone = sprintf('%s/images/standalone-image-demo.jpg', drupal_get_path('module', 'campaign_kit_demo'));
+  $imgStandalone = null;
+  if (is_readable($imgSourceStandalone)) {
+    $data = file_get_contents($imgSourceStandalone);
+
+    $imgStandalone = file_save_data(
+      $data,
+      $destination.'/standalone-image-demo.jpg',
+      FILE_EXISTS_REPLACE
+    );
+  }
+
+  // Validating image for parent campaign
+  $imgSourceParent = sprintf('%s/images/parent-image-demo.jpg', drupal_get_path('module', 'campaign_kit_demo'));
+  $imgParent = null;
+  if (is_readable($imgSourceParent)) {
+    $data_1 = file_get_contents($imgSourceParent);
+
+    $imgParent = file_save_data(
+      $data_1,
+      $destination.'/parent-image-demo.jpg',
+      FILE_EXISTS_REPLACE
+    );
+  }
+
+  // Validating image for child campaign
+  $imgSourceChild = sprintf('%s/images/child-image-demo.jpg', drupal_get_path('module', 'campaign_kit_demo'));
+  $imgChild = null;
+  if (is_readable($imgSourceChild)) {
+    $data_2 = file_get_contents($imgSourceChild);
+
+    $imgChild = file_save_data(
+      $data_2,
+      $destination.'/child-image-demo.jpg',
+      FILE_EXISTS_REPLACE
+    );
+  }
+
+  $datetimeStart = new DrupalDateTime();
+
+  //Create example for Standalone Campaign entity
+  $standalone = Campaign::create(
+    array(
+      'type' => 'standalone',
+      'langcode' => 'en',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'title' => 'My Standalone Campaign example created by CKDemo module',
+      'campaign_status' => 'open',
+      'campaign_type' => 'standalone',
+      'header_image' => [
+        'target_id' => $imgStandalone->id(),
+        'alt' => 'Hello world'
+      ],
+      'description' => array(
+        'value' => '<h1>Welcome to My Standalone Campaign page!</h1>',
+        'format' => 'basic_html'
+      ),
+      'short_description' => 'This is my short description',
+      'start_date' => $datetimeStart->format('Y-m-d\TH:i:s'),
+      'end_date' => $datetimeStart->format('2018-05-01\T23:23:23'),
+      'one_time_donation_goal' => 5000,
+      'monthly_donation_goal' => 2000,
+      'one_time_donation_goal_suggested' => '100',
+      'thank_you_message' => array(
+        'value' => '<h1>Thank you for supporting us!</h1>',
+        'format' => 'basic_html'
+      ),
+      'facebook_url' => 'https://www.facebook.com/',
+      'twitter_url' => 'https://twitter.com/?lang=es',
+      'google_url' => 'https://plus.google.com/?hl=es',
+      'donation_page_title' => 'Welcome to my donation page',
+      'donation_page_description' => array(
+        'value' => '<h1>Welcome to this page to donate, we say thank you in advance. Cheers</h1>',
+        'format' => 'basic_html'
+      ),
+      'donation_frequency_allowed' => 'onetime',
+    )
+  );
+  $standalone->save();
+
+  //Create example for Campaign Donation entity for an Standalone Campaign
+  $campaignDonationStandalone = CampaignDonation::create(
+    array(
+      'type' => 'campaign_donation',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'payment_status' => 'confirmed',
+      'first_name' => 'Andre',
+      'last_name' => 'Angelantoni',
+      'mail' => '',
+      'amount' => 1500,
+      'campaign_id' => array(
+        'target_id' => $standalone->id(),
+      ),
+      'currency' => 'USD',
+      'title' => 'mr',
+    )
+  );
+  $campaignDonationStandalone->save();
+
+  // Create Campaign Update record for an Standalone Campaign
+  $campaignUpdateStandalone = CampaignUpdate::create(
+    array(
+      'type' => 'campaign_update',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'name' => 'First update for this campaign '.$standalone->id(),
+      'campaign_id' => array(
+        'target_id' => $standalone->id(),
+      ),
+      'campaign_update' => array(
+        'value' => "<h1>Let's start donating!</h1>",
+        'format' => 'basic_html'
+      ),
+    )
+  );
+  $campaignUpdateStandalone->save();
+
+  //Create example for Parent Campaign entity
+  $parent = Campaign::create(
+    array(
+      'type' => 'parent',
+      'langcode' => 'en',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'title' => 'My Parent Campaign example created by CKDemo module',
+      'campaign_status' => 'open',
+      'campaign_type' => 'parent',
+      'header_image' => [
+        'target_id' => $imgParent->id(),
+        'alt' => 'Hello world'
+      ],
+      'description' => array(
+        'value' => '<h1>Welcome to My Parent Campaign page!</h1>',
+        'format' => 'basic_html'
+      ),
+      'short_description' => 'This is my short description',
+      'start_date' => $datetimeStart->format('Y-m-d\TH:i:s'),
+      'end_date' => $datetimeStart->format('2018-05-01\T23:23:23'),
+      'one_time_donation_goal' => 5000,
+      'monthly_donation_goal' => 2000,
+      'one_time_donation_goal_suggested' => '100',
+      'thank_you_message' => array(
+        'value' => '<h1>Thank you for supporting us!</h1>',
+        'format' => 'basic_html'
+      ),
+      'facebook_url' => 'https://www.facebook.com/',
+      'twitter_url' => 'https://twitter.com/?lang=es',
+      'google_url' => 'https://plus.google.com/?hl=es',
+      'donation_page_title' => 'Welcome to my donation page',
+      'donation_page_description' => array(
+        'value' => '<h1>Welcome to this page to donate, we say thank you in advance. Cheers</h1>',
+        'format' => 'basic_html'
+      ),
+      'donation_frequency_allowed' => 'onetime',
+    )
+  );
+  $parent->save();
+
+  //Create example for Campaign Donation entity for a Parent Campaign
+  $campaignDonationParent = CampaignDonation::create(
+    array(
+      'type' => 'campaign_donation',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'payment_status' => 'confirmed',
+      'first_name' => 'Andre',
+      'last_name' => 'Angelantoni',
+      'mail' => '',
+      'amount' => 1500,
+      'campaign_id' => array(
+        'target_id' => $parent->id(),
+      ),
+      'currency' => 'USD',
+      'title' => 'mr',
+    )
+  );
+  $campaignDonationParent->save();
+
+  // Create Campaign Update record for a Parent Campaign
+  $campaignUpdateParent= CampaignUpdate::create(
+    array(
+      'type' => 'campaign_update',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'name' => 'First update for this campaign '.$parent->id(),
+      'campaign_id' => array(
+        'target_id' => $parent->id(),
+      ),
+      'campaign_update' => array(
+        'value' => "<h1>Let's start donating!</h1>",
+        'format' => 'basic_html'
+      ),
+    )
+  );
+  $campaignUpdateParent->save();
+
+  //Create example for Child Campaign entity
+  $datetimeParentStart = new DrupalDateTime($parent->get('start_date')->value);
+  $datetimeParentEnd = new DrupalDateTime($parent->get('end_date')->value);
+  $child = Campaign::create(
+    array(
+      'type' => 'child',
+      'langcode' => 'en',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'title' => 'My Child Campaign example created by CKDemo module',
+      'campaign_status' => 'open',
+      'parent_id' => array(
+        'target_id' => $parent->id(),
+      ),
+      'campaign_type' => 'child',
+      'header_image' => [
+        'target_id' => $imgChild->id(),
+        'alt' => 'Example child image'
+      ],
+      'description' => array(
+        'value' => '<h1>Welcome to My Child Campaign page!</h1>',
+        'format' => 'basic_html'
+      ),
+      'short_description' => 'This is my short description',
+      'start_date' => $datetimeParentStart->format('Y-m-d\TH:i:s'),
+      'end_date' => $datetimeParentEnd->format('Y-m-d\TH:i:s'),
+      'one_time_donation_goal' => 5000,
+      'monthly_donation_goal' => 2000,
+      'one_time_donation_goal_suggested' => '100',
+      'thank_you_message' => array(
+        'value' => '<h1>Thank you for supporting us!</h1>',
+        'format' => 'basic_html'
+      ),
+      'facebook_url' => 'https://www.facebook.com/',
+      'twitter_url' => 'https://twitter.com/?lang=es',
+      'google_url' => 'https://plus.google.com/?hl=es',
+      'donation_page_title' => 'Welcome to my donation page',
+      'donation_page_description' => array(
+        'value' => '<h1>Welcome to this page to donate, we say thank you in advance. Cheers</h1>',
+        'format' => 'basic_html'
+      ),
+      'donation_frequency_allowed' => 'onetime',
+    )
+  );
+  $child->save();
+
+  //Create example for Campaign Donation entity for a Child Campaign
+  $campaignDonationChild = CampaignDonation::create(
+    array(
+      'type' => 'campaign_donation',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'payment_status' => 'Confirmed',
+      'first_name' => 'Rose',
+      'last_name' => 'Mcgowan',
+      'mail' => '',
+      'amount' => 2000,
+      'campaign_id' => array(
+        'target_id' => $child->id(),
+      ),
+      'currency' => 'USD',
+      'title' => 'mr',
+    )
+  );
+  $campaignDonationChild->save();
+
+  // Create Campaign Update record for a Child Campaign
+  $campaignUpdateChild = CampaignUpdate::create(
+    array(
+      'type' => 'campaign_update',
+      'user_id' => array(
+        'target_id' => 0,
+      ),
+      'name' => 'First update for this campaign '.$child->id(),
+      'campaign_id' => array(
+        'target_id' => $child->id(),
+      ),
+      'campaign_update' => array(
+        'value' => "<h1>Let's start donating!</h1>",
+        'format' => 'basic_html'
+      ),
+    )
+  );
+  $campaignUpdateChild->save();
+
+}

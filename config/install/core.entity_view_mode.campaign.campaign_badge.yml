@@ -1,0 +1,10 @@
+uuid: 97a6c5fc-a900-484d-84e9-1ca68ef05a8a
+langcode: en
+status: true
+dependencies:
+  module:
+    - campaign_kit
+id: campaign.campaign_badge
+label: 'Campaign Badge'
+targetEntityType: campaign
+cache: true

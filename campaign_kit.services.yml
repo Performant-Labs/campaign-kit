@@ -1,0 +1,4 @@
+services:
+  plugin.manager.payment_processor:
+    class: Drupal\campaign_kit\PaymentProcessorPluginManager
+    parent: default_plugin_manager

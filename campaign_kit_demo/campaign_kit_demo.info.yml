@@ -1,0 +1,7 @@
+name: Campaign Kit Demonstration
+type: module
+description: Demonstration of Campaign Kit.
+core: 8.x
+package: Campaign Kit
+dependencies:
+  - campaign_kit

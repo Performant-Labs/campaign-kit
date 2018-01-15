@@ -1,0 +1,55 @@
+entity.campaign.add_form:
+  route_name: entity.campaign.add_page
+  title: 'Add Campaign'
+  appears_on:
+    - entity.campaign.collection
+entity.campaign_type.add_form:
+  route_name: entity.campaign_type.add_form
+  title: 'Add Campaign type'
+  appears_on:
+    - entity.campaign_type.collection
+
+entity.campaign_donation.add_form:
+  route_name: entity.campaign_donation.add_page
+  title: 'Add Campaign donation'
+  appears_on:
+    - entity.campaign_donation.collection
+entity.campaign_donation_type.add_form:
+  route_name: entity.campaign_donation_type.add_form
+  title: 'Add Campaign donation type'
+  appears_on:
+    - entity.campaign_donation_type.collection
+
+entity.campaign_update.add_form:
+  route_name: entity.campaign_update.add_page
+  title: 'Add Campaign update'
+  appears_on:
+    - entity.campaign_update.collection
+entity.campaign_update_type.add_form:
+  route_name: entity.campaign_update_type.add_form
+  title: 'Add Campaign update type'
+  appears_on:
+    - entity.campaign_update_type.collection
+
+entity.donation.add_form:
+  route_name: entity.donation.add_page
+  title: 'Add Donation'
+  appears_on:
+    - entity.donation.collection
+entity.donation_type.add_form:
+  route_name: entity.donation_type.add_form
+  title: 'Add Donation type'
+  appears_on:
+    - entity.donation_type.collection
+
+entity.campaign_transaction.add_form:
+  route_name: entity.campaign_transaction.add_page
+  title: 'Add Campaign transaction'
+  appears_on:
+    - entity.campaign_transaction.collection
+entity.campaign_transaction_type.add_form:
+  route_name: entity.campaign_transaction_type.add_form
+  title: 'Add Campaign transaction type'
+  appears_on:
+    - entity.campaign_transaction_type.collection
+

@@ -1,0 +1,185 @@
+{#
+/**
+ * @file badge--campaign-badge.html.twig
+ * Default theme implementation to present Campaign data.
+ *
+ * This template is used when viewing Badge.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Badge variables #}
+{% set campaign_frequency = content.donation_frequency_allowed['#items'].getString() %}
+{% set campaign_frequency_label = content.donation_frequency_allowed[0]['#markup'] %}
+{% set supporters_number_monthly = badge.getNumberSupporters %}
+{% set supporters_number_onetime = badge.getNumberSupporters %}
+{% set funded_percentage_monthly = badge.getPercentage ~ '%' %}
+{% set funded_percentage_onetime = badge.getPercentage ~ '%' %}
+{% set days_left = badge.getDaysLeft.days %}
+
+<div class="campaign-badge">
+  <div{{ attributes.addClass('campaign-badge--content') }}>
+
+    <div class="campaign-badge--image">
+      {% if content.header_image %}
+        {{ content.header_image }}
+      {% endif %}
+      <div class="campaign-badge--duration">
+        {{ days_left }}
+        {% if days_left == 1 %}
+          {{ 'Day Left'|trans }}
+        {% else %}
+          {{ 'Days Left'|trans }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="campaign-badge--info">
+      <div class="campaign-badge--title">
+        {{ content.title }}
+      </div>
+
+      {# Campaign Frequency: Monthly or One time #}
+      {% if campaign_frequency == "monthly" or campaign_frequency == "onetime" %}
+
+        <div class="campaign-badge--frequency">
+          <div class="campaign-frequency-type">
+            {{ campaign_frequency_label|trans }}
+          </div>
+          <div class="campaign-badge--goal">
+            {% if campaign_frequency == 'monthly' %}
+              <span>{{ 'Goal'|trans }} $</span>{{ content.monthly_donation_goal }}
+            {% endif %}
+            {% if campaign_frequency == 'onetime' %}
+              <span>{{ 'Goal'|trans }} $</span>{{ content.one_time_donation_goal }}
+            {% endif %}
+          </div>
+        </div>
+        <div class="campaign-badge--status">
+
+          {% if campaign_frequency == 'monthly' %}
+            <span>{{ supporters_number_monthly }}
+              {% if supporters_number_monthly == 1 %}
+                {{ 'Supporter'|trans }}
+              {% else %}
+                {{ 'Supporters'|trans }}
+              {% endif %}
+            </span>
+          {% endif %}
+          {% if campaign_frequency == 'onetime' %}
+            <span>{{ supporters_number_onetime }}
+              {% if supporters_number_onetime == 1 %}
+                {{ 'Supporter'|trans }}
+              {% else %}
+                {{ 'Supporters'|trans }}
+              {% endif %}
+            </span>
+          {% endif %}
+
+          <div class="campaign-badge--funded">
+            {% if campaign_frequency == 'monthly' %}
+              <span class="progress-goal--value">{{ funded_percentage_monthly }} {{ 'Funded'|trans }}</span>
+            {% endif %}
+            {% if campaign_frequency == 'onetime' %}
+              <span class="progress-goal--value">{{ funded_percentage_onetime }} {{ 'Funded'|trans }}</span>
+            {% endif %}
+          </div>
+
+        </div>
+        <div class="campaign-badge--progress">
+          <div class = "progress-bar" >
+
+            {% if campaign_frequency == 'monthly' %}
+              {{ ('<span style="width:' ~ funded_percentage_monthly ~ ';">') | raw }}
+            {% endif %}
+            {% if campaign_frequency == 'onetime' %}
+
+              {{ ('<span style="width:' ~ funded_percentage_onetime ~ ';">') | raw }}
+
+            {% endif %}
+
+          </div>
+        </div><!-- /.campaign-badge-progress -->
+
+      {% endif %}
+
+      {# Campaign Frequency Both: Monthly and One time #}
+      {% if campaign_frequency == "both_or" %}
+
+        <div class="campaign-onetime">
+          <div class="campaign-badge--frequency">
+            <div class="campaign-frequency-type">
+              {{ 'One Time'|trans }}
+            </div>
+            <div class="campaign-badge--goal">
+              <span>{{ 'Goal'|trans }} $</span>{{ content.one_time_donation_goal }}
+            </div>
+          </div>
+          <div class="campaign-badge--status">
+            <span>{{ supporters_number_onetime }}
+            {% if supporters_number_onetime == 1 %}
+              {{ 'Supporter'|trans }}
+              {% else %}
+                {{ 'Supporters'|trans }}
+            {% endif %}
+            </span>
+            <div class="campaign-badge--funded">
+              <span class="progress-goal--value">
+                <span>{{ funded_percentage_onetime }}</span>
+                {{ 'Funded'|trans }}
+              </span>
+            </div>
+          </div>
+          <div class="campaign-badge--progress">
+            <div class = "progress-bar" >
+
+              {{ ('<span style="width:' ~ funded_percentage_onetime ~ ';">') | raw }}
+
+            </div>
+          </div><!-- /.campaign-badge-progress -->
+        </div><!-- /.campaign-onetime -->
+        <div class="campaign-monthly">
+          <div class="campaign-badge--frequency">
+            <div class="campaign-frequency-type">
+              {{ 'Monthly'|trans }}
+            </div>
+            <div class="campaign-badge--goal">
+              <span>{{ 'Goal'|trans }} $</span>{{ content.monthly_donation_goal }}
+            </div>
+          </div>
+          <div class="campaign-badge--status">
+            <span>{{ supporters_number_monthly }}
+            {% if supporters_number_monthly == 1 %}
+              {{ 'Supporter'|trans }}
+              {% else %}
+                {{ 'Supporters'|trans }}
+            {% endif %}
+            </span>
+            <div class="campaign-badge--funded">
+              <span class="progress-goal--value">
+                <span>{{ funded_percentage_monthly }}</span>
+                {{ 'Funded'|trans }}
+              </span>
+            </div>
+          </div>
+          <div class="campaign-badge--progress">
+            <div class = "progress-bar" >
+
+              {{ ('<span style="width:' ~ funded_percentage_monthly ~ ';">') | raw }}
+
+            </div>
+          </div><!-- /.campaign-badge-progress -->
+        </div><!-- /.campaign-monthly -->
+
+      {% endif %}
+    </div><!-- /.campaign-badge-info -->
+
+  </div><!-- /.campaign-badge-content -->
+</div><!-- /.campaign-badge -->
+

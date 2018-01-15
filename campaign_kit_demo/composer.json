@@ -1,0 +1,14 @@
+{
+  "name": "drupal/campaign_kit_demo",
+  "type": "drupal-module",
+  "description": "This is a demo of Campaign Kit module to create campaigns and ask people to donate",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/campaign_kit_demo",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/campaign_kit_demo",
+    "source": "http://cgit.drupalcode.org/campaign_kit_demo"
+  },
+  "require": { }
+}

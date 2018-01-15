@@ -1,0 +1,6 @@
+uuid: 1b346dd8-6cd7-4202-b484-2c93078158dc
+langcode: en
+status: true
+dependencies: {  }
+id: campaign_transaction
+label: 'Campaign transaction'

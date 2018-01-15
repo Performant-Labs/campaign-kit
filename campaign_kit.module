@@ -1,0 +1,571 @@
+<?php
+/**
+ * @file
+ * Contains campaign_kit.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+// Added.
+use Drupal\Core\Datetime\DrupalDateTime;
+use \Drupal\campaign_kit\Entity\Campaign;
+
+/**
+ * Implements hook_help().
+ *
+ * @param $route_name
+ * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+ *
+ * @return string
+ */
+function campaign_kit_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help.
+    case 'help.page.campaign_kit':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Create donation campaign(s). See https://performantlabs.gitbooks.io/campaign-kit/content for complete documentation.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * @param array $page
+ */
+function campaign_kit_page_attachments(array &$page) {
+  // Attaching library for basic theming
+  $page['#attached']['library'][] = 'campaign_kit/basic-styling';
+  // Attaching Sweetalert library
+  $page['#attached']['library'][] = 'campaign_kit/sweetalert2-library';
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * @return array
+ */
+function campaign_kit_theme() {
+  $theme = [];
+  $theme['campaign_kit'] = [
+    'render element' => 'children',
+  ];
+  $theme['campaign'] = [
+    'render element' => 'elements',
+    'file' => 'campaign.page.inc',
+    'template' => 'campaign',
+  ];
+  $theme['campaign_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'campaign.page.inc',
+  ];
+  $theme['campaign_donation'] = [
+    'render element' => 'elements',
+    'file' => 'campaign_donation.page.inc',
+    'template' => 'campaign_donation',
+  ];
+  $theme['campaign_donation_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'campaign_donation.page.inc',
+  ];
+  $theme['campaign_update'] = [
+    'render element' => 'elements',
+    'file' => 'campaign_update.page.inc',
+    'template' => 'campaign_update',
+  ];
+  $theme['campaign_update_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'campaign_update.page.inc',
+  ];
+  $theme['donation'] = [
+    'render element' => 'elements',
+    'file' => 'donation.page.inc',
+    'template' => 'donation',
+  ];
+  $theme['donation_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'donation.page.inc',
+  ];
+  $theme['donation_service'] = [
+    'template' => 'donation-service',
+    'render element' => 'children',
+    'variables' => [
+      'name' => NULL,
+      'type' => NULL,
+      'type2' => NULL,
+    ],
+  ];
+  $theme['campaign--parent--display'] = [
+    'template' => 'campaign--parent--display',
+    'render element' => 'children',
+    'variables' => [
+      'campaign' => array(),
+    ],
+  ];
+  $theme['campaign--child--display'] = [
+    'template' => 'campaign--child--display',
+    'render element' => 'children',
+    'variables' => [
+      'campaignChild' => array(),
+    ],
+  ];
+  $theme['campaign--thank-you'] = [
+    'template' => 'campaign--thank-you',
+    'render element' => 'children',
+    'variables' => [
+      'campaign' => array(),
+    ],
+  ];
+  $theme['campaign--child--thank-you'] = [
+    'template' => 'campaign--child--thank-you',
+    'render element' => 'children',
+    'variables' => [
+      'campaignChild' => array(),
+    ],
+  ];
+  $theme['campaign-badge'] = [
+    'template' => 'campaign-badge',
+    'render element' => 'children',
+    'variables' => [
+    ],
+  ];
+  $theme['campaign--child--add'] = [
+    'template' => 'campaign--child--add',
+    'render element' => 'children',
+    'variables' => [
+      'child_create_form' => array(),
+    ],
+  ];
+  $theme['campaign_badge__campaign_badge'] = [
+    'base hook' => 'campaign',
+  ];
+
+  $theme['campaign_transaction'] = [
+    'render element' => 'elements',
+    'file' => 'campaign_transaction.page.inc',
+    'template' => 'campaign_transaction',
+  ];
+  $theme['campaign_transaction_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'campaign_transaction.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * @param array $variables
+ *
+ * @return array
+ */
+function campaign_kit_theme_suggestions_campaign(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#campaign'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'campaign__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign__' . $entity->bundle();
+  $suggestions[] = 'campaign__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign__' . $entity->id();
+  $suggestions[] = 'campaign__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_registry_alter
+ *
+ * @param $theme_registry
+ */
+function campaign_kit_theme_registry_alter(&$theme_registry) {
+  $theme_registry['campaign_badge__campaign_badge']['path'] = drupal_get_path('module', 'campaign_kit') . '/templates';
+}
+
+function campaign_kit_theme_suggestions_campaign_alter(array &$suggestions, array $variables) {
+  // Add template suggestions based on the current view mode.
+  $campaign = $variables['elements']['#campaign'];
+  $suggestions[] = 'campaign_badge__' . $variables['elements']['#view_mode'];
+  $suggestions[] = 'campaign_badge__' . '__' . $variables['elements']['#view_mode'];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * @param array $variables
+ *
+ * @return array
+ */
+function campaign_kit_theme_suggestions_campaign_donation(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#campaign_donation'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'campaign_donation__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_donation__' . $entity->bundle();
+  $suggestions[] = 'campaign_donation__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_donation__' . $entity->id();
+  $suggestions[] = 'campaign_donation__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * @param array $variables
+ *
+ * @return array
+ */
+function campaign_kit_theme_suggestions_campaign_update(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#campaign_update'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'campaign_update__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_update__' . $entity->bundle();
+  $suggestions[] = 'campaign_update__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_update__' . $entity->id();
+  $suggestions[] = 'campaign_update__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * @param array $variables
+ *
+ * @return array
+ */
+function campaign_kit_theme_suggestions_donation(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#donation'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'donation__' . $sanitized_view_mode;
+  $suggestions[] = 'donation__' . $entity->bundle();
+  $suggestions[] = 'donation__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'donation__' . $entity->id();
+  $suggestions[] = 'donation__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_entity_type_build().
+ *
+ * @param array $entity_types
+ */
+function campaign_kit_entity_type_build(array &$entity_types) {
+  // This is for /campaign/{campaignId}/child/add form
+  $entity_types['campaign']->setFormClass('child', 'Drupal\campaign_kit\Form\CampaignForm');
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
+ */
+function campaign_kit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'donate_form'){
+    $form['#attached']['library'][] = 'campaign_kit/demo-styling';
+  }
+
+  // Campaign Standalone form using standalone form mode and without form mode
+  if ($form_id == 'campaign_standalone_standalone_form' || $form_id == 'campaign_standalone_add_form'){
+    $config = \Drupal::config('campaign_kit.paymentprocessor');
+    $clientPlugin =  $config->get('campaign_kit');
+
+    switch ($clientPlugin['frequency']){
+      case 'onetime':
+        $frequency = array(
+          'onetime' => 'One time',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+      case 'monthly':
+        $frequency = array(
+          'monthly' => 'Monthly',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+      case 'both_or':
+        $frequency = array(
+          'onetime' => 'One time',
+          'monthly' => 'Monthly',
+          'both_or' => 'Both/Or',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+    }
+    $form['title']['widget'][0]['value']['#placeholder'] = t('Campaign title');
+    $form['campaign_type']['widget']['#default_value'] = 'standalone';
+    $form['campaign_type']['widget']['#disabled'] = TRUE;
+    $form['campaign_status']['widget']['#default_value'] = 'open';
+    //$form['campaign_status']['widget']['#disabled'] = TRUE;
+    $form['parent_id']['#access'] = FALSE;
+    $form['team_id']['#access'] = FALSE;
+
+    $datetimeStart = new DrupalDateTime();
+    $form['start_date']['widget'][0]['value']['#default_value'] = $datetimeStart;
+    //$form['start_date']['widget']['#disabled'] = TRUE;
+
+    // OOP Call: Use a static function from ExampleController class.
+    //$form['#validate'][] = 'Drupal\campaign_kit\Controller\DonationGoalController::campaign_standalone_campaign_form_validate';
+    //$form['actions']['submit']['#submit'][] = 'redirectStandalone';
+    //$form['#after_build'][] = 'Drupal\campaign_kit\Controller\DonationGoalController::campaign_standalone_campaign_form_submit';
+  }
+
+  // Campaign Child form using child form mode and without form mode
+  if ($form_id == 'campaign_child_child_form' || $form_id == 'campaign_child_add_form'){
+    $config = \Drupal::config('campaign_kit.paymentprocessor');
+    $clientPlugin =  $config->get('campaign_kit');
+
+    switch ($clientPlugin['frequency']){
+      case 'onetime':
+        $frequency = array(
+          'onetime' => 'One time',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+
+      case 'monthly':
+        $frequency = array(
+          'monthly' => 'Monthly',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+
+      case 'both_or':
+        $frequency = array(
+          'onetime' => 'One time',
+          'monthly' => 'Monthly',
+          'both_or' => 'Both/Or',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+    }
+
+    // Check the Parent ID in the PATH
+    $current_path = \Drupal::service('path.current')->getPath();
+    $options = explode("/", $current_path);
+
+    if ((int)$options[2] > 0) {
+      // /campaign/{idCampaign}/child/add
+      //TODO: Verify this '$options[2] = {idCampaign}' exists
+      $form['parent_id']['widget'][0]['target_id']['#default_value'] = Drupal\campaign_kit\Entity\Campaign::load($options[2]);
+      $form['parent_id']['widget'][0]['target_id']['#disabled'] = TRUE;
+    }
+
+    $form['campaign_type']['widget']['#default_value'] = 'child';
+    $form['campaign_type']['widget']['#disabled'] = TRUE;
+
+    $form['campaign_status']['widget']['#default_value'] = 'open';
+    $form['campaign_status']['widget']['#disabled'] = TRUE;
+
+    $form['one_time_donation_goal']['widget'][0]['value']['#default_value'] = 100;
+    $form['one_time_donation_goal']['widget']['#disabled'] = TRUE;
+
+    // Dates inherited from its parent
+    $datetimeStart = new DrupalDateTime();
+    $form['start_date']['widget'][0]['value']['#default_value'] = $datetimeStart;
+    //$form['start_date']['widget']['#disabled'] = TRUE;
+
+    $form['end_date']['widget'][0]['value']['#default_value'] = $datetimeStart;
+    //$form['end_date']['widget']['#disabled'] = TRUE;
+  }
+
+  // Campaign Parent form using parent form mode and without form mode
+  if ($form_id == 'campaign_parent_parent_form' || $form_id == 'campaign_parent_add_form'){
+    $config = \Drupal::config('campaign_kit.paymentprocessor');
+    $clientPlugin =  $config->get('campaign_kit');
+
+    switch ($clientPlugin['frequency']){
+      case 'onetime':
+        $frequency = array(
+          'onetime' => 'One time',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+
+      case 'monthly':
+        $frequency = array(
+          'monthly' => 'Monthly',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+
+      case 'both_or':
+        $frequency = array(
+          'onetime' => 'One time',
+          'monthly' => 'Monthly',
+          'both_or' => 'Both/Or',
+        );
+        $form['donation_frequency_allowed']['widget']['#options'] = $frequency;
+        $form['donation_frequency_allowed']['widget']['#empty_option'] =  t('- None -');
+        break;
+    }
+    $form['campaign_type']['widget']['#default_value'] = 'parent';
+    $form['campaign_type']['widget']['#disabled'] = TRUE;
+    $form['campaign_status']['widget']['#default_value'] = 'open';
+    //$form['campaign_status']['widget']['#disabled'] = TRUE;
+    $form['parent_id']['#access'] = FALSE;
+
+    $datetimeStart = new DrupalDateTime();
+    $form['start_date']['widget'][0]['value']['#default_value'] = $datetimeStart;
+
+    // Redirect campaign parent campaign form
+    // $form['actions']['submit']['#submit'][] = 'redirectParent';
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ * Adds Meta Open Graph tags to head.
+ *
+ * @param $variables
+ */
+function campaign_kit_preprocess_html(&$variables) {
+
+  if(\Drupal::routeMatch()->getParameter('campaignId')) {
+    $campaignId = \Drupal::routeMatch()->getParameter('campaignId');
+    //Check if the entity exists
+    $ids = \Drupal::entityQuery('campaign')
+      ->condition('id', $campaignId, '=')
+      ->execute();
+
+    if ($ids){
+      $entityCampaign = Campaign::load($campaignId);
+      $campaign_title = $entityCampaign->getTitle();
+      $campaign_description = strip_tags($entityCampaign->get('description')->value);
+      $campaign_image = file_create_url($entityCampaign->get('header_image')->entity->uri->value);
+    } else {
+      $campaign_title = '';
+      $campaign_description = '';
+      $campaign_image = '';
+    }
+
+    $title = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:title',
+          'content' => $campaign_title,
+      ],
+    ];
+    $description = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:description',
+          'content' => $campaign_description,
+      ],
+    ];
+
+    $image = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:image',
+          'content' => $campaign_image,
+      ],
+    ];
+
+    //$variables['page']['#attached']['html_head'][] = [$title, 'title'];
+    $variables['page']['#attached']['html_head'][] = [$description, 'description'];
+    $variables['page']['#attached']['html_head'][] = [$image, 'image'];
+
+  }
+
+  if(\Drupal::routeMatch()->getParameter('campaignChildId')) {
+    $campaignChildId = \Drupal::routeMatch()->getParameter('campaignChildId');
+    //Check if the entity exists
+    $ids = \Drupal::entityQuery('campaign')
+      ->condition('id', $campaignChildId, '=')
+      ->execute();
+
+    if ($ids){
+      $entityCampaign = Campaign::load($campaignChildId);
+      $campaign_title = $entityCampaign->getTitle();
+      $campaign_description = strip_tags($entityCampaign->get('description')->value);
+      $campaign_image = file_create_url($entityCampaign->get('header_image')->entity->uri->value);
+    } else {
+      $campaign_title = '';
+      $campaign_description = '';
+      $campaign_image = '';
+    }
+
+    $title = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:title',
+          'content' => $campaign_title,
+      ],
+    ];
+    $description = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:description',
+          'content' => $campaign_description,
+      ],
+    ];
+
+    $image = [
+      '#tag' => 'meta',
+      '#attributes' => [
+          'property' => 'og:image',
+          'content' => $campaign_image,
+      ],
+    ];
+
+    $variables['page']['#attached']['html_head'][] = [$title, 'title'];
+    $variables['page']['#attached']['html_head'][] = [$description, 'description'];
+    $variables['page']['#attached']['html_head'][] = [$image, 'image'];
+
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * @param array $variables
+ *
+ * @return array
+ */
+function campaign_kit_theme_suggestions_campaign_transaction(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#campaign_transaction'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'campaign_transaction__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_transaction__' . $entity->bundle();
+  $suggestions[] = 'campaign_transaction__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'campaign_transaction__' . $entity->id();
+  $suggestions[] = 'campaign_transaction__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess().
+ *
+ * @param array $variables
+ */
+function campaign_kit_preprocess(array &$variables) {
+  // Loading the site name of the website.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+}

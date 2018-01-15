@@ -1,0 +1,110 @@
+# Campaign routing definition
+
+entity.campaign.canonical:
+  route_name: entity.campaign.canonical
+  base_route: entity.campaign.canonical
+  title: 'View'
+
+entity.campaign.edit_form:
+  route_name: entity.campaign.edit_form
+  base_route: entity.campaign.canonical
+  title: 'Edit'
+
+entity.campaign.version_history:
+  route_name: entity.campaign.version_history
+  base_route: entity.campaign.canonical
+  title: 'Revisions'
+
+entity.campaign.delete_form:
+  route_name:  entity.campaign.delete_form
+  base_route:  entity.campaign.canonical
+  title: Delete
+  weight: 10
+
+# Campaign donation routing definition
+
+entity.campaign_donation.canonical:
+  route_name: entity.campaign_donation.canonical
+  base_route: entity.campaign_donation.canonical
+  title: 'View'
+
+entity.campaign_donation.edit_form:
+  route_name: entity.campaign_donation.edit_form
+  base_route: entity.campaign_donation.canonical
+  title: 'Edit'
+
+entity.campaign_donation.delete_form:
+  route_name:  entity.campaign_donation.delete_form
+  base_route:  entity.campaign_donation.canonical
+  title: Delete
+  weight: 10
+
+# Campaign update routing definition
+
+entity.campaign_update.canonical:
+  route_name: entity.campaign_update.canonical
+  base_route: entity.campaign_update.canonical
+  title: 'View'
+
+entity.campaign_update.edit_form:
+  route_name: entity.campaign_update.edit_form
+  base_route: entity.campaign_update.canonical
+  title: 'Edit'
+
+entity.campaign_update.version_history:
+  route_name: entity.campaign_update.version_history
+  base_route: entity.campaign_update.canonical
+  title: 'Revisions'
+
+entity.campaign_update.delete_form:
+  route_name:  entity.campaign_update.delete_form
+  base_route:  entity.campaign_update.canonical
+  title: Delete
+  weight: 10
+
+# Donation routing definition
+
+entity.donation.canonical:
+  route_name: entity.donation.canonical
+  base_route: entity.donation.canonical
+  title: 'View'
+
+entity.donation.edit_form:
+  route_name: entity.donation.edit_form
+  base_route: entity.donation.canonical
+  title: 'Edit'
+
+entity.donation.version_history:
+  route_name: entity.donation.version_history
+  base_route: entity.donation.canonical
+  title: 'Revisions'
+
+entity.donation.delete_form:
+  route_name:  entity.donation.delete_form
+  base_route:  entity.donation.canonical
+  title: Delete
+  weight: 10
+
+# Campaign transaction routing definition
+
+entity.campaign_transaction.canonical:
+  route_name: entity.campaign_transaction.canonical
+  base_route: entity.campaign_transaction.canonical
+  title: 'View'
+
+entity.campaign_transaction.edit_form:
+  route_name: entity.campaign_transaction.edit_form
+  base_route: entity.campaign_transaction.canonical
+  title: 'Edit'
+
+entity.campaign_transaction.version_history:
+  route_name: entity.campaign_transaction.version_history
+  base_route: entity.campaign_transaction.canonical
+  title: 'Revisions'
+
+entity.campaign_transaction.delete_form:
+  route_name:  entity.campaign_transaction.delete_form
+  base_route:  entity.campaign_transaction.canonical
+  title: Delete
+  weight: 10
+

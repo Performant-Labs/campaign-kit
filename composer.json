@@ -1,0 +1,14 @@
+{
+  "name": "drupal/campaign_kit",
+  "type": "drupal-module",
+  "description": "Allows to create campaign(s) to receive donations using an external Payment Processor(PP)",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/campaign_kit",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/campaign_kit",
+    "source": "http://cgit.drupalcode.org/campaign_kit"
+  },
+  "require": { }
+}

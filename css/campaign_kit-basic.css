@@ -1,0 +1,772 @@
+/* Main variables for Campaign Kit elements */
+:root {
+  --bg-donation-button: #292929;
+  --donation-button-text: #fff;
+  --donation-font-size: 16px;
+  --bg-main-tab: #292929;
+  --main-tab-text: #fff;
+  --bg-progress-bar: #92a0a4;
+  --bg-percentage-goal: #fff;
+  --border-percentage-goal: #3d3d3f;
+  --percentage-goal-text: #3d3d3f;
+  --percentage-goal-font: 32px;
+  --time-icon-color: #3b3b3b;
+  --organizer-icon-color: #3b3b3b;
+  --beneficiary-icon-color: #3b3b3b;
+}
+
+/* Campaign page */
+div.campaign-banner img {
+  height: 580px;
+  margin: 0;
+  object-fit: cover;
+  width: 100%;
+}
+
+.path-campaign h1.page-title {
+  display: none;
+}
+
+.campaign-information {
+  display: flex;
+  width: 100%;
+}
+
+.campaign-description {
+  margin: 25px 30px 25px 0;
+  text-align: justify;
+  width: 60%;
+}
+
+/* Campaign Tabs */
+.campaign-content--desc {
+  border: 1px solid #292929;
+  overflow: hidden;
+  min-height: 100px;
+  padding: 30px 20px 20px;
+}
+
+.campaign-tabs {
+  width: 100%;
+  display: flex;
+}
+
+.campaign .tabs {
+  background: #fff;
+  clear: both;
+  font-family: inherit;
+  min-height: 200px;
+  margin: 55px 0 25px;
+  position: relative;
+  width: 100%;
+}
+
+.campaign .tab {
+  float: left;
+  min-width: 90px !important;
+  width: 100%;
+}
+
+.campaign .tab label {
+  background-color: var(--bg-main-tab);
+  border: solid 1px #292929;
+  border-radius: 5px 5px 0 0;
+  color: var(--main-tab-text);
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0 0 0 -1px;
+  left: 1px;
+  padding: 10px 0 9px;
+  position: absolute;
+  text-align: center;
+  top: -38px;
+  -webkit-transition: background-color .17s linear;
+  text-transform: uppercase;
+  width: 140px;
+}
+
+.campaign .tabs .tab:nth-child(2) label {
+  left: 154px;
+}
+
+.campaign .tab [type=radio] {
+  display: none;
+}
+
+.campaign .tab .campaign-content--tab {
+  background: white;
+  bottom: 0;
+  display: none;
+  left: 0;
+  -webkit-transition: opacity .6s linear;
+  margin:  0;
+  opacity: 0;
+  top: 10px;
+  right: 0;
+}
+
+.campaign .tab .campaign-content--tab p {
+  margin: 0 0 25px;
+}
+
+.campaign [type=radio]:checked ~ label {
+  background: #fff;
+  border:  solid 1px #292929;
+  border-bottom: 1px solid #fff;
+  color: #292929;
+  font-size: 12px;
+  padding-bottom: 9px;
+  z-index: 2;
+}
+
+.campaign [type=radio]:checked ~ label ~ .campaign-content--tab {
+  display: block;
+  opacity: 1;
+}
+
+.campaign .tab .empty-message {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Updates view tab */
+.campaign .tab .view .view-content li {
+  border-bottom: solid 1px #DBDBDB;
+  font-size: 14px;
+  padding: 5px 8px 10px;
+}
+
+.campaign .tab .view .view-content li:last-child {
+  border-bottom: 0;
+}
+
+.campaign .tab .view .view-content li:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.campaign .tab .view-campaign-updates .views-field-name {
+  font-size: 15px;
+  margin: 13px 0 5px;
+}
+
+.campaign .tab .view-campaign-updates .views-field-created {
+  color: #6d6b6b;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+/* Supporters view tab */
+.campaign .tab .view-supporters .view-content li {
+  display: flex;
+  padding: 8px;
+}
+
+.campaign .tab .view-supporters .view-content li div {
+  margin-right: 5px;
+}
+
+.campaign .tab .view-supporters .view-content li div:last-child {
+  margin-left: auto;
+  margin-right: 0;
+  min-width: 100px;
+  text-align: right;
+}
+
+/* Campaign Status Block */
+.campaign-data {
+  width: 40%;
+}
+
+.campaign-data .campaign-status {
+  background: url('../images/donation-status.png') no-repeat #292929;
+  background-size: 100% !important;
+  background-position: 0 bottom;
+  color: #fff;
+  margin: 25px 0;
+  padding: 21px 15px;
+}
+
+.campaign-current{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+}
+
+.campaign-current .ammount-raised,
+.campaign-current .ammount-goal {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.campaign-current .ammount-raised {
+  font-size: 32px;
+  margin: 0;
+  min-height: 40px;
+}
+
+.campaign-current .ammount-goal{
+  font-size: 14px;
+}
+
+.campaign-status .campaign-percentage {
+  border-radius: 50%;
+  background: var(--bg-percentage-goal);
+  border: solid 1px var(--border-percentage-goal);
+  color: var(--percentage-goal-text);
+  height: 90px;
+  margin: 0 auto;
+  position: relative;
+  top: 102px;
+  width: 90px;
+}
+
+.campaign-percentage .percentage,
+.campaign-percentage .percentage-text{
+  display: flex;
+  justify-content: center;
+}
+
+.campaign-percentage .percentage {
+  font-size: var(--percentage-goal-font);
+  min-height: 40px;
+  padding-top: 10px;
+}
+
+.campaign-percentage .percentage-text {
+  font-size: 14px;
+}
+
+.campaign-time {
+  align-items: flex-end;
+  display: flex;
+  font-size: 16px;
+  justify-content: space-between;
+  min-height: 35px;
+  margin:  0 27px;
+  text-align: center;
+}
+
+.campaign-time label {
+  font-weight: 400;
+}
+
+.campaign-time .campaign-total-donors,
+.campaign-time .campaign-time-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-time .campaign-time-left {
+  line-height: 1.3;
+  max-width: 75px;
+  text-align: center;
+}
+
+.num-donors,
+.num-days {
+  font-size: 20px;
+}
+
+.num-donors,
+.supporters,
+.num-days,
+.days-left{
+  justify-content: center;
+  display: flex;
+}
+
+.campaign-donate {
+  margin: 45px 0 25px;
+  text-align: center;
+}
+
+/* Progress Bar */
+.campaign-data .progress-bar  {
+  background-color: #fff;
+  border-radius: 5px;
+  height: 6px;
+  padding: 1px;
+  position: relative;
+  width: 100%;
+}
+
+.campaign-data .progress-bar span,
+.campaign-badge .progress-bar span {
+  border-radius: 3px;
+  background-color: var(--bg-progress-bar);
+  display: inline-block;
+  height: 6px;
+  position: absolute;
+  top: 1px;
+}
+
+/* Donation button */
+a.donate-button {
+  background-color: var(--bg-donation-button);
+  border: 0;
+  border-radius: 20px;
+  color: var(--donation-button-text);
+  display: inline-block;
+  font-size: var(--donation-font-size);
+  margin: 10px 12px;
+  min-width: 100px;
+  padding: 10px 23px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a.donate-button:hover {
+  border:  0;
+  background-color: #92a0a4;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Social Network menu */
+.campaign-social ul {
+  list-style: none;
+  text-align: center;
+}
+
+.campaign-social li {
+  margin-bottom: 5px;
+}
+
+.campaign-social a {
+  border: 0;
+  display: inline-block;
+  padding: 6px;
+}
+
+.campaign-social textarea#current-url {
+  height: 0;
+  position: absolute;
+  z-index: -1;
+  width: 0;
+}
+
+.campaign-social .url-icon {
+  background-color: transparent;
+  border: 0;
+}
+
+.campaign-social a::before {
+  font-family: "FontAwesome";
+  font-size: 17px;
+  margin-left: -26px;
+  margin-top: -2px;
+  position: absolute;
+}
+
+.campaign-social a.email-icon::before {
+  content: "\f0e0";
+  font-size: 15px;
+  margin: -1px 0 0 -23px;
+}
+
+/* Data Bottom - Subscribe */
+.data-bottom {
+  margin: 15px;
+  text-align: center;
+}
+
+.data-bottom .time-status i {
+  color: var(--time-icon-color);
+  font-size: 26px;
+  margin-right: 5px;
+}
+
+.time-status .label-time,
+.campaign .data-info b {
+  font-weight: 700;
+}
+
+.campaign .data-info .organizer-info i,
+.campaign .data-info .beneficiary-info i {
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.campaign .data-info .organizer-info i {
+  color: var(--organizer-icon-color);
+}
+
+.campaign .data-info .beneficiary-info i {
+  color: var(--beneficiary-icon-color);
+}
+
+.campaign .data-info p {
+  margin: 5px 0 5px;
+}
+
+.subscribe {
+  margin: 20px 0;
+  text-align: center;
+}
+
+a.subscribe-button {
+  position: relative;
+}
+
+a.subscribe-button::before {
+  content: "\f003";
+  font-family: "FontAwesome";
+  font-size: 14px;
+  margin-left: -23px;
+  margin-top: -1px;
+  position: absolute;
+}
+
+/* Thank you page */
+.honor-details {
+  font-size: 15px;
+}
+
+.thanks-page b {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  color: #494949;
+}
+
+h2.campaign-subtitle {
+  color: #99bf38;
+  font-size: 25px !important;
+  margin: 30px 0 20px !important;
+}
+
+.honor-details p {
+  margin-bottom: 5px;
+}
+
+.memory-detail {
+  margin: 15px 0;
+}
+
+.memory-description {
+  border: solid 1px #99bf38;
+  border-radius: 8px;
+  background: #fcfcfa;
+  color: #6d6b6b;
+  font-size: 14px;
+  line-height: 26px;
+  margin: 20px 50px 30px;
+  padding: 25px 50px;
+  position: relative;
+}
+
+.memory-description .field--name-recipient-message {
+  display: inline;
+  text-align: center;
+}
+
+.memory-description .field--name-recipient-message .field__item {
+  display: inline;
+  text-indent: 25px;
+}
+
+.memory-description .field--name-recipient-message .field__item::before,
+.memory-description .field--name-recipient-message .field__item::after {
+  color: #9abd43;
+  font-family: "FontAwesome";
+  font-size: 28px;
+  position: absolute;
+}
+
+.memory-description .field--name-recipient-message .field__item::before {
+  content: "\f10d";
+  margin: 0 0 0 -32px;
+}
+
+.memory-description .field--name-recipient-message .field__item::after {
+  content: "\f10e";
+  margin: 2px 0 0 9px;
+  right: 36px;
+  bottom: 29px;
+}
+
+.memory-detail {
+  font-size: 16px;
+}
+
+.path-campaign .campaign-thankyou-header {
+  position: relative;
+}
+
+.path-campaign .thanks-page .campaign-title {
+  background: rgba(000, 000, 000, 0.4);
+  left: 26%;
+  margin-top: 60px;
+  padding: 10px 40px;
+  position: absolute;
+  top: 0;
+  width: 370px;
+}
+
+.path-campaign .thanks-page .campaign-title h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.path-campaign .thanks-page .campaign-title div {
+  color: #fff;
+}
+
+.path-campaign .thanks-page .campaign-default--button {
+  background-color: #9abd43;
+  color: #fff;
+}
+
+.path-campaign .thanks-page .campaign-default--button:hover {
+  background-color: #212121;
+}
+
+/* Campaign Badge Block */
+.campaign-badge {
+  background-color: #fff;
+  border: solid 1px #ccc;
+  color: #3b3b3b;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  height: 100%;
+  max-width: 415px;
+  margin:  0 20px 0 0;
+}
+
+.view-badge .views-view-grid .views-row {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.campaign-badge .campaign-monthly {
+  margin-top: 15px;
+}
+
+.campaign-badge .campaign-frequency-type {
+  color: #606060;
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  font-size: 14px;
+}
+
+.campaign-badge .campaign-badge--duration {
+  color: #fff;
+  font-size: 16px;
+  top: -1px;
+  left: 0;
+  position: absolute;
+  padding: 15px 20px;
+}
+
+.campaign-badge .campaign-badge--image {
+  line-height: normal;
+  position: relative;
+}
+
+.campaign-badge .campaign-badge--image img {
+  margin: 0;
+  object-fit: cover;
+  height: 250px;
+  width: 100%;
+}
+
+.campaign-badge--img {
+  background: url('../images/campaign-badge.jpg') no-repeat;
+  background-size: 100%;
+  height: 299px;
+  width: 100%;
+}
+
+.campaign-badge--image .field--name-header-image::after {
+  background-image: linear-gradient(145deg,#000 -19%, transparent 56%);
+  content: '';
+  display: block;
+  height: 251px;
+  margin-top: -254px;
+  position: relative;
+  width: 100%;
+}
+
+.campaign-badge--info {
+  padding: 20px 15px 35px;
+}
+
+.campaign-badge--title,
+.campaign-badge .field--name-name {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.campaign-badge--goal {
+  color: #6d6b6b;
+  color: #494949;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 3px 0 5px;
+}
+
+.campaign-badge--progress .progress-bar {
+  background-color: #e1e4e5;
+  border-radius: 5px;
+  flex: 1 100%;
+  height: 12px;
+  margin-bottom: 6px;
+  padding: 1px;
+  position: relative;
+}
+
+.campaign-badge--progress .progress-bar span {
+  background-color: #9abd43;
+  border-radius: 3px;
+  height: 12px;
+  top: 1px;
+  position: absolute;
+}
+
+.campaign-badge--status {
+  color: #6d6b6b;
+  display: flex;
+  font-size: 13px;
+  justify-content: space-between;
+  margin: 0 0 3px;
+}
+
+.campaign-badge--image {
+  width: 100%;
+}
+
+.campaign-badge--progress {
+  color: #6d6b6b;
+  display: flex;
+  font-size: 14px;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Responsive Theming */
+/* Desktop */
+@media (min-width: 1200px) {
+
+  .campaign-data .campaign-status {
+    background-size: 112% !important;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+
+  .campaign-content--desc {
+    padding: 25px 10px 20px;
+  }
+
+  .campaign .tab .view-supporters .view-content li {
+    display: block;
+    overflow: hidden;
+  }
+
+  .campaign .tab .view-supporters .view-content li div {
+    float: left;
+    text-align: left;
+    margin-right: 0;
+    padding-right: 5px;
+  }
+
+  .campaign .tab .view-supporters .view-content li div:last-child {
+    float: right;
+    min-width: 64px;
+    padding-right: 0;
+  }
+
+  .campaign .tab label {
+    width: 106px;
+  }
+
+  .campaign .tabs {
+    min-height: 130px;
+  }
+
+  .campaign .tabs .tab:nth-child(2) label {
+    left: 117px;
+  }
+
+  .campaign-data .campaign-status {
+    background-size: 110% !important;
+  }
+
+  .view-badge .view-content .views-view-grid .views-col{
+    width: 100% !important;
+  }
+
+  .view-badge .views-view-grid .views-row {
+    display: block;
+  }
+
+  .campaign-badge {
+    max-width: 100%;
+    margin: 0 0 25px 0;
+    width: 100%;
+  }
+
+  .view-badge .views-view-grid .views-row {
+    margin-bottom: 0;
+  }
+
+  .campaign-data .campaign-status {
+    background-size: auto 100%;
+  }
+
+  div.campaign-banner img {
+      height: auto;
+  }
+
+  .campaign-information {
+    flex-direction: column;
+  }
+
+  .campaign-description,
+  .campaign-data {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .campaign .tab {
+    min-width: 70px !important;
+  }
+
+  .campaign-social {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .leaderboard-fundraiser {
+    width: 55%;
+  }
+
+ .leaderboard-total--monthly {
+    display: none;
+  }
+
+  .leaderboard-data tbody tr td:nth-child(2) {
+    display: none;
+  }
+
+  .path-campaign .thanks-page .campaign-title {
+    left: 0;
+    padding: 10px;
+    width: auto;
+  }
+
+  .memory-description {
+    margin: 20px 10px 30px;
+    padding: 25px 40px;
+  }
+
+}
+
+.campaign-form .field--type-datetime fieldset legend {
+  text-transform: none;
+}

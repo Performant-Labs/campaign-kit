@@ -1,0 +1,10 @@
+uuid: 1a3550aa-546e-4e07-aa01-583da051fa8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - campaign_kit
+id: campaign.campaign_kit
+label: 'Campaign Kit'
+targetEntityType: campaign
+cache: true

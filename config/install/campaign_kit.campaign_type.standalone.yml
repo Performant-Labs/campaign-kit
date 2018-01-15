@@ -1,0 +1,6 @@
+uuid: b48f62fc-091c-40f5-b96f-fd329b57b84d
+langcode: en
+status: true
+dependencies: {  }
+id: standalone
+label: 'Standalone Campaign'

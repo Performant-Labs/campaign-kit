@@ -1,0 +1,17 @@
+# Spanish translation of Campaign Kit
+#
+msgid ""
+msgstr ""
+
+msgid "Supporters"
+msgstr "Donadores"
+msgid "About"
+msgstr "A cerca de"
+msgid "Updates"
+msgstr "Actualizaciones"
+msgid "First Name"
+msgstr "Nombre"
+msgid "Last Name"
+msgstr "Apellido"
+msgid "Donate now"
+msgstr "Donar ahora"

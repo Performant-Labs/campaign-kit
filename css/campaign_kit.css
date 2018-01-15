@@ -1,0 +1,442 @@
+/* Main variables */
+:root {
+  --default-color-link: #99bf38;
+}
+
+.campaign a,
+.create-child--campaign a,
+.add-donation a {
+  border: 0;
+  color: var(--default-color-link);
+}
+
+.campaign a:hover,
+.create-child--campaign a:hover,
+.add-donation a:hover,
+.path-child-campaign-list a:hover,
+.block-views-blockchild-campaign-list-block-1 a:hover {
+  color: #212121;
+  text-decoration: underline;
+}
+
+.campaign .field__label {
+  color: #4d4d4d;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Styles for Campaign page */
+div.campaign-title h1,
+.path-donor-list .block-page-title-block .page-title,
+.block-views-blockdonor-list-block-1,
+.path-child-campaign-list .block-page-title-block .page-title {
+  /*border-bottom: solid 1px #ccc;*/
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 37px;
+  font-weight: 300;
+  margin: 0 0 25px;
+}
+
+.campaign-title,
+.path-donor-list .block-page-title-block .page-title {
+  width: 100%;
+}
+
+/* Campaign Status Block */
+.campaign-status .campaign-percentage {
+  background: #9abd43;
+  border: solid 1px #9abd43;
+  color: #fff;
+}
+
+.campaign-data .progress-bar span {
+  background-color: #9abd43;
+}
+
+/* Donation button */
+.campaign-donate a.donate-button {
+  background-color: #9abd43;
+  color: #fff;
+}
+
+a.donate-button:hover {
+  background-color: #212121;
+  text-decoration: none;
+}
+
+/* Social Network menu */
+.campaign-social ul {
+  margin: 0;
+  padding: 0;
+}
+
+.campaign-social li {
+  position: relative;
+}
+
+.campaign-social .ck-social-button,
+.campaign-social .email-icon {
+  background: #000;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 7px 0;
+  padding: 6px;
+  position: relative;
+  text-align: center;
+}
+
+.campaign-social .ck-social-button:hover,
+.campaign-social .url-icon:hover,
+.campaign-social .email-icon:hover {
+  background-color: #92a0a4 !important;
+  border: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.campaign-social .ck-social-button:focus,
+.campaign-social .email-icon:focus {
+  color: #fff;
+}
+
+.campaign-social .facebook-icon {
+  background-color: #45629b;
+}
+
+.campaign-social .twitter-icon {
+  background-color: #59adeb;
+}
+
+.campaign-social .google-icon {
+  background-color: #da4b3e;
+}
+
+.campaign-social .ck-social-button i,
+.campaign-social .email-icon i {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.campaign-social .url-icon {
+  background-color: #696969;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 9px;
+  text-align: center;
+  width: 100%;
+}
+
+.campaign-social i.fa-link {
+  font-size: 14px;
+  color: #fff;
+  left: 42px;
+  position: absolute;
+  top: 35%;
+}
+
+.campaign-social .url-icon::before {
+  content: "\f0c1";
+}
+
+.campaign-social a.email-icon {
+  background-color: #000;
+}
+
+/* Data Bottom - Subscribe */
+.data-bottom {
+  margin: 30px 15px;
+  text-align: center;
+}
+
+.data-bottom .time-status {
+  font-size: 16px;
+}
+
+.time-status .label-time {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.data-bottom .time-status i {
+  color: #99bf38;
+}
+
+a.subscribe-button {
+  border: solid 3px;
+  border-radius: 20px;
+  background: #fff;
+  color: #9abd43;
+  display: inline-block;
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  font-size: 13px;
+  padding: 10px 25px 10px 45px;
+  text-transform: uppercase;
+  border-color: #9abd43;
+}
+
+a.subscribe-button:hover {
+  background-color: #292929;
+  border-color: #292929;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Campaign Tabs */
+.campaign .tabs {
+  margin: 60px 0 25px;
+}
+
+.campaign .tab label {
+  background: #292929;
+}
+
+.campaign .tab .campaign-content--tab,
+.campaign .tab {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+}
+
+.campaign [type=radio]:checked ~ label {
+  color: #292929;
+}
+
+.campaign .tab .view-campaign-updates .views-field-name {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+}
+
+/* Internal pages */
+.campaign-desc {
+  margin: 10px 0 20px;
+}
+
+/* Responsive Theming */
+/* Desktop */
+@media (min-width: 1200px) {
+
+  .campaign-social {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .leaderboard-fundraiser {
+    width: 40%;
+  }
+
+  .leaderboard-total--monthly,
+  .leaderboard-total--amount {
+    width: 30%;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  .campaign-social i.fa-link {
+    left: 80px;
+  }
+}
+
+/* Campaign Description */
+.campaign-short-desc strong {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+}
+
+/* Campaign Leaderboard */
+.leaderboard-title {
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.leaderboard-title h1 {
+  color: #99bf38;
+  font-size: 30px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.leaderboard-title h2.leaderboard-subtitle {
+  color: #6d6b6b;
+  font-size: 20px !important;
+  margin: 0 !important;
+}
+
+.leaderboard-description {
+  color: #6d6b6b;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.leaderboard-data,
+.view-donor-list table.views-table {
+  border-collapse: collapse;
+  border: 1px solid #bec0c0;
+  background-color: #fff;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 14px;
+  color: #292929;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.leaderboard-data tr td,
+.leaderboard-data tr th,
+.view-donor-list table.views-table tr td,
+.view-donor-list table.views-table tr th {
+  border: solid 1px #bec0c0;
+}
+
+table.leaderboard-data tr,
+.view-donor-list table.views-table tr {
+  background-color: #fff;
+}
+
+table.leaderboard-data thead,
+.view-donor-list table.views-table thead {
+  border-right: solid 2px #99bf38;
+}
+
+table.leaderboard-data tr th,
+.view-donor-list table.views-table tr th {
+  background: #99bf38;
+  border-color: #99bf38 #fff #99bf38 #99bf38;
+  border-bottom: 0;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+table.leaderboard-data tr td,
+.view-donor-list table.views-table tr td {
+  padding: 12px 15px;
+}
+
+/* Donor List Page - Block */
+div.block-views-blockdonor-list-block-1 h2,
+div.block-views-blockchild-campaign-list-block-1 h2 {
+  border-bottom: solid 1px #99bf38;
+  color: #99bf38;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin: 10px 0 25px;
+}
+
+div.block-views-blockdonor-list-block-1.block .content {
+  font-size:  15px;
+}
+
+/* Donor Block */
+div.block-views-blockdonor-list-block-1.block,
+div.block-views-blockchild-campaign-list-block-1.block {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  background: #fff;
+  background: #f9f9f9;
+  border: solid 1px #ccc;
+  color: #3b3b3b;
+}
+
+div.block-views-blockdonor-list-block-1 .view-content ul li,
+div.block-views-blockchild-campaign-list-block-1 .view-content .item-list ul li {
+  border-bottom: solid 1px #bec0c0;
+  font-size: 15px;
+  margin-bottom: 15px;
+  padding: 10px 0 10px;
+}
+
+div.block-views-blockdonor-list-block-1 ul li:last-child,
+div.block-views-blockchild-campaign-list-block-1 .view-content .item-list ul li:last-child {
+  border-bottom: 0;
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-title,
+.block-views-blockdonor-list-block-1 .views-field-name,
+.block-views-blockdonor-list-block-1 .views-field-field-last-name {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 16px;
+  margin: 0 10px 10px 0;
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-cell-phone::before,
+.block-views-blockdonor-list-block-1 .views-field-field-email::before,
+.block-views-blockdonor-list-block-1 .views-field-field-leave-a-message::before {
+  color: #99bf38;
+  font-family: "FontAwesome";
+  font-size: 18px;
+  margin: -6px 15px 0 0;
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-cell-phone::before {
+  content: "\f095";
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-email::before {
+  content: "\f0e0";
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-cell-phone,
+.block-views-blockdonor-list-block-1 .views-field-field-email,
+.block-views-blockdonor-list-block-1 .views-field-field-leave-a-message {
+  display: block;
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-leave-a-message {
+  color: #6d6b6b;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.block-views-blockdonor-list-block-1 .views-field-field-leave-a-message p {
+  margin: 0 0 10px;
+}
+
+/* Data Supporters information */
+.data-supporters {
+  border: 0;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 14px;
+}
+
+.data-supporters b {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+}
+
+.data-supporters tr {
+  background-color: #fff;
+  border-bottom: solid 1px #DBDBDB;
+}
+
+/* Data Info */
+.campaign .data-info {
+  color: #6d6b6b;
+  font-size: 15px;
+}
+
+.campaign .data-info b {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  color: #000;
+}
+
+.campaign .data-info .organizer-info i,
+.campaign .data-info .beneficiary-info i {
+  color: #99bf38;
+}
+
+/* SweetAlert - Custom Styles */
+.swal2-popup .swal2-title {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 24px !important;
+}
+
+.swal2-popup button.swal2-styled {
+  background-color: #9abd43 !important;
+}

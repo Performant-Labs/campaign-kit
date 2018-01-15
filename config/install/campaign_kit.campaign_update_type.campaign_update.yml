@@ -1,0 +1,6 @@
+uuid: 27d8522a-ef53-42aa-ab59-eb5104a62952
+langcode: en
+status: true
+dependencies: {  }
+id: campaign_update
+label: 'Campaign update'

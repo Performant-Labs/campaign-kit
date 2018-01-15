@@ -1,0 +1,8 @@
+campaign_kit:
+  account_id: '16576518'
+  pay_pal_email: 'campaign_kit@camapign-kit.com'
+  client_name: 'Hank Williams'
+  currency: 'USD-BO'
+  description: 'Hank Williams'
+  version: '1.0'
+  frequency: 'none'

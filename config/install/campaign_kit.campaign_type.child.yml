@@ -1,0 +1,6 @@
+uuid: 018eacf3-06ba-4b24-b91a-e463a952f924
+langcode: en
+status: true
+dependencies: {  }
+id: child
+label: 'Child Campaign'

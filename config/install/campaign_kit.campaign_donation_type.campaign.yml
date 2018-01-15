@@ -1,0 +1,6 @@
+uuid: 94c19ea9-c3f3-4843-967e-993666a0b29b
+langcode: en
+status: true
+dependencies: {  }
+id: campaign_donation
+label: 'Campaign donation'

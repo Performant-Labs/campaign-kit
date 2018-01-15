@@ -1,0 +1,28 @@
+# Demo styling
+demo-styling:
+  version: 1.x
+  css:
+    layout:
+      css/campaign_kit.css: {}
+    theme:
+      css/campaign_kit-global.css: {}
+      css/campaign_kit-forms.css: {}
+
+# Basic styling
+basic-styling:
+  version: 1.x
+  css:
+    layout:
+      css/campaign_kit-basic.css: {}
+    component:
+      fonts/font-awesome/css/font-awesome.min.css: {}
+  js:
+    js/ck_custom.js: {}
+
+# Sweet Alert library
+sweetalert2-library:
+  version: 2.x
+  js:
+    js/sweetalert2/dist/sweetalert2.all.min.js: {}
+    js/sweetalert2/dist/sweetalert2.min.js: {}
+    https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js: { type: external }

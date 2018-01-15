@@ -1,0 +1,10 @@
+uuid: 46a58842-6ea3-4d4c-9291-528f9d4138ca
+langcode: en
+status: true
+dependencies:
+  module:
+    - campaign_kit
+id: campaign.standalone
+label: 'Standalone Campaign'
+targetEntityType: campaign
+cache: true

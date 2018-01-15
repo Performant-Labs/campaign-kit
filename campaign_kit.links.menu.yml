@@ -1,0 +1,96 @@
+campaign_kit.campaign_kit_controller:
+  title: 'Campaign Kit'
+  route_name: campaign_kit.campaign_kit_controller
+  description: 'Campaign Kit administration'
+  parent: system.admin_structure
+  weight: 100
+
+# Campaign menu items definition
+entity.campaign.collection:
+  title: 'Campaign list'
+  route_name: entity.campaign.collection
+  description: 'List campaigns'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 100
+
+
+# Campaign type menu items definition
+entity.campaign_type.collection:
+  title: 'Campaign type'
+  route_name: entity.campaign_type.collection
+  description: 'List campaign type (bundles)'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 99
+
+
+# Campaign donation menu items definition
+entity.campaign_donation.collection:
+  title: 'Campaign donation list'
+  route_name: entity.campaign_donation.collection
+  description: 'List Campaign donation entities'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 100
+
+
+# Campaign donation type menu items definition
+entity.campaign_donation_type.collection:
+  title: 'Campaign donation type'
+  route_name: entity.campaign_donation_type.collection
+  description: 'List Campaign donation type (bundles)'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 99
+
+
+# Campaign update menu items definition
+entity.campaign_update.collection:
+  title: 'Campaign update list'
+  route_name: entity.campaign_update.collection
+  description: 'List Campaign update entities'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 100
+
+
+# Campaign update type menu items definition
+entity.campaign_update_type.collection:
+  title: 'Campaign update type'
+  route_name: entity.campaign_update_type.collection
+  description: 'List Campaign update type (bundles)'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 99
+
+
+# Donation menu items definition
+entity.donation.collection:
+  title: 'Donation list'
+  route_name: entity.donation.collection
+  description: 'List Donation entities'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 100
+
+
+# Donation type menu items definition
+entity.donation_type.collection:
+  title: 'Donation type'
+  route_name: entity.donation_type.collection
+  description: 'List Donation type (bundles)'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 99
+
+
+# Campaign transaction menu items definition
+entity.campaign_transaction.collection:
+  title: 'Campaign transaction list'
+  route_name: entity.campaign_transaction.collection
+  description: 'List Campaign transaction entities'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 100
+
+
+# Campaign transaction type menu items definition
+entity.campaign_transaction_type.collection:
+  title: 'Campaign transaction type'
+  route_name: entity.campaign_transaction_type.collection
+  description: 'List Campaign transaction type (bundles)'
+  parent: campaign_kit.campaign_kit_controller
+  weight: 99
+

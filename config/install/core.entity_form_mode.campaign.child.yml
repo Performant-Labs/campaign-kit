@@ -1,0 +1,10 @@
+uuid: d90e7d9e-7c90-4b92-a9d0-98687fb2a5f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - campaign_kit
+id: campaign.child
+label: 'Child Campaign'
+targetEntityType: campaign
+cache: true

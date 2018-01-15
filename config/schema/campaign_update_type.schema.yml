@@ -1,0 +1,12 @@
+campaign_kit.campaign_update_type.*:
+  type: config_entity
+  label: 'Campaign update type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string

@@ -1,0 +1,748 @@
+/* Add Child Campaign and Donation form */
+.campaign-form,
+#donate-form {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  color:  #292929;
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#donate-form {
+  max-width: 800px;
+}
+
+#donate-form fieldset .fieldset-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+#donate-form fieldset .fieldset-wrapper .description,
+#donate-form fieldset#edit-donor-information .fieldset-wrapper .field-suffix {
+  color: #6d6b6b;
+  font-size: 12px;
+}
+
+#donate-form fieldset .form-item-recipient-message label {
+  margin-bottom: 10px;
+}
+
+#donate-form fieldset .form-item-recipient-message .form-textarea-wrapper,
+#donate-form fieldset .form-item-recipient-message label {
+  width: 100%;
+}
+
+#donate-form #edit-dedicate-type {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#donate-form #edit-dedicate-type .form-item {
+  display: block;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: auto;
+}
+
+#donate-form .data-dedication-info {
+  display: flex;
+}
+
+#donate-form div.data-dedication-info label,
+#donate-form div.data-dedication-info .form-item-honoree-last-name,
+#donate-form div.data-dedication-info .form-item-recipient-last-name {
+  width: 49.5%;
+}
+
+#donate-form .data-dedication-info .form-text {
+  flex: 1 0 120px;
+}
+
+#donate-form .data-dedication-info #edit-honoree-first-name,
+#donate-form .data-dedication-info #edit-recipient-first-name {
+  margin-right: 10px;
+}
+
+#donate-form .data-dedication-info #edit-honoree-last-name,
+#donate-form .data-dedication-info #edit-recipient-last-name {
+  margin-left: 5px;
+}
+
+#donate-form .data-dedication-info .form-item-honoree-last-name label,
+#donate-form .data-dedication-info .form-item-recipient-last-name label {
+  display: none;
+}
+
+/* Custom styles for radio buttons */
+#donate-form .donation-data-amount .form-type-radio,
+#donate-form #edit-dedicate-type .form-type-radio {
+  position: relative;
+}
+
+#donate-form .donation-data-amount input[type="radio"],
+#donate-form #edit-dedicate-type input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+#donate-form .donation-data-amount input[type="radio"] + label::before,
+#donate-form #edit-dedicate-type input[type="radio"] + label::before {
+  background: #fafafa;
+  border-radius: 100%;
+  border: solid 1px #d2d2d2;
+  content: '';
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  margin-right: 5px;
+  position: relative;
+  top: 0;
+  text-align: center;
+  transition: all 250ms ease;
+  vertical-align: top;
+  width: 20px;
+}
+
+#donate-form .donation-data-amount input[type="radio"]:checked + label::before,
+#donate-form #edit-dedicate-type input[type="radio"]:checked + label::before {
+  background-color: #99bf38;
+  box-shadow: inset 0 0 0 4px #fafafa;
+}
+
+#donate-form .donation-data-amount input[type="radio"]:focus + label::before,
+#donate-form #edit-dedicate-type input[type="radio"]:focus + label::before {
+  border-color: #d2d2d2;
+  outline: none;
+}
+
+/* Custom style for checkbox on donate form */
+#donate-form .form-item-dedicate-donation-1 input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+#donate-form .form-item-dedicate-donation-1 input[type="checkbox"] + label {
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+
+#donate-form .form-item-dedicate-donation-1 input[type="checkbox"] + label::before {
+  border: solid 1px #ccc;
+  background: #f9f9f9;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  margin-right: 8px;
+  vertical-align: text-bottom;
+  width: 15px;
+}
+
+#donate-form .form-item-dedicate-donation-1 input[type="checkbox"]:checked + label::before {
+  background: #fff;
+}
+
+#donate-form .form-item-dedicate-donation-1 input[type="checkbox"]:checked + label::after {
+  color: #99bf38;
+  content: "\f00c";
+  font-family: "FontAwesome";
+  font-size: 12px;
+  left: 3px;
+  top: 1px;
+  position: absolute;
+}
+
+/* Add Child Campaign Form */
+.campaign-form fieldset input.form-date,
+.campaign-form fieldset input.form-time {
+  width: 100%;
+}
+
+.campaign-form fieldset#edit-date-start-0 .container-inline,
+.campaign-form fieldset#edit-date-end-0 .container-inline {
+  display: flex;
+  justify-content: flex-start;
+  width: 70%;
+}
+
+.campaign-form fieldset .form-type-date,
+.campaign-form fieldset .form-type-date {
+  width: 30%;
+}
+
+.campaign-form fieldset {
+  border: 1px solid #DBDBDB;
+  max-width: 96.7%;
+}
+
+.campaign-form fieldset .description {
+  margin-left: 0;
+}
+
+.campaign-form fieldset input {
+  margin-right: 10px;
+}
+
+.campaign-personal--info {
+  margin: 0;
+  width: 100%;
+}
+
+.campaign-personal--info .form-item {
+  max-width: 80%;
+}
+
+.campaign-title {
+  font-size: 37px;
+  font-weight: 300;
+  margin: 0 0 25px;
+}
+
+.create--child .form-item,
+.campaign-personal--info .form-item,
+.campaign-form .form-wrapper .form-item,
+#donate-form .form-item {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 13px 0;
+  width: 100%;
+}
+
+.campaign-form div.filter-wrapper {
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.campaign-form div.filter-wrapper label {
+  width: auto;
+}
+
+.create--child .form-item label,
+.campaign-personal--info .form-item label,
+.campaign-form .form-item label,
+.campaign-form .form-wrapper label,
+#donate-form .form-item label {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-weight: 700;
+  width: 33%;
+}
+
+.campaign-form .form-type-textarea.form-item {
+  display: block;
+  margin: 0;
+}
+
+.create--child .form-item > label + *,
+.campaign-personal--info > label + * {
+  flex: 1 0 1;
+}
+
+.create--child .form-item .form-text,
+.campaign-personal--info .form-item .form-text,
+.campaign-donation .form-text,
+.campaign-form .form-text,
+.campaign-form .form-number,
+.campaign-form .form-email,
+.campaign-form fieldset input,
+#donate-form .form-text,
+#donate-form .form-email,
+#donate-form .form-number {
+  box-shadow: none;
+  border: 1px solid #DBDBDB;
+  background: #fcfcfa;
+  border-radius: 8px;
+  color: #292929;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  /*flex: 1 0 220px;*/
+  font-size: 15px;
+  padding: 10px 15px;
+  width: 67%;
+}
+
+.campaign-form textarea {
+  border: 1px solid #DBDBDB;
+  border-radius: 8px;
+}
+
+.campaign-form .form-file {
+  border: 0;
+}
+
+.campaign-form a {
+  border: 0;
+  color: #99bf38;
+}
+
+.create-child--campaign input,
+.create-child--campaign textarea,
+.create-child--campaign select,
+.add-donation input,
+.add-donation textarea,
+.add-donation select,
+.campaign-form input,
+.campaign-form textarea,
+.campaign-form select,
+#donate-form select,
+#donate-form input {
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+}
+
+.create--child .form-item .form-text:focus,
+.campaign-personal--info .form-item .form-text:focus {
+  background-color: #fff;
+}
+
+/* Default button style */
+.create-child--campaign div.form-actions input.button.form-submit,
+.campaign-personal--info div.form-actions input.button.form-submit,
+.campaign-form div.form-actions input.button.form-submit,
+#donate-form div.form-actions input.button.form-submit {
+  background-color: #9abd43;
+  background-image: none;
+  border: 0;
+  border-radius: 20px;
+  color: #fff;
+  display: inline-block;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 10px 12px 10px 0;
+  min-width: 140px;
+  padding: 10px 23px;
+  text-align: center;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+.create-child--campaign div.form-actions input.button.form-submit:hover,
+.add-donation div.form-actions input.button.form-submit:hover,
+.campaign-form div.form-actions input.button.form-submit:hover,
+#donate-form div.form-actions input.button.form-submit:hover {
+  box-shadow: none;
+  background-color: #212121;
+}
+
+.create--child div.form-actions,
+.campaign-form div.form-actions {
+  margin: 16px 0 16px 33%;
+}
+
+.required {
+  color: #DC5656;
+}
+
+/* Add Donation Page */
+.campaign-personal--info .form-item .form-text {
+  margin-right: 10px;
+  max-width: 220px;
+}
+
+.form-help--text,
+.campaign-form div.description {
+  color: #6d6b6b;
+  font-size: 12px;
+  font-family: 'latolight', "Helvetica Neue",sans-serif;
+}
+
+.campaign-form .description {
+  margin-left: 33%;
+}
+
+.campaign-personal--info .form-item select,
+.campaign-form select,
+#donate-form select {
+  border: 1px solid #DBDBDB;
+  background: #fcfcfa;
+  color: #292929;
+  height: 39px;
+  width: 220px;
+}
+
+.campaign-personal--info .birthday-item.form-item .form-text {
+  max-width: 170px;
+}
+
+.card-number--item {
+  background: url('../images/cards.png') no-repeat;
+  background-size: 25%;
+  background-position: 85.5% center;
+}
+
+.campaign-personal--info div.form-actions {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 16px 0 16px 26%;
+  padding: 0;
+}
+
+.campaign-personal--info div.form-actions .form-help--text {
+  color: #6d6b6b;
+  font-size: 12px;
+  flex: 1 0 100%;
+}
+
+.campaign-personal--info .amount-details {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  font-size: 20px;
+}
+
+.donation-fees {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  color: #a1a8ac;
+  font-size: 13px;
+  padding: 20px;
+}
+
+/* Donate Form */
+#donate-form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#donate-form legend {
+  border-bottom: solid 1px #99bf38;
+  color: #99bf38;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 30px 0;
+  width: 100%;
+}
+
+#donate-form #edit-donor-information legend {
+  margin-top: 0;
+}
+
+.campaign-amount,
+#donate-form #edit-donation {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin: 0 auto 20px;
+  padding: 0;
+}
+
+#donate-form #edit-donation.form-radios input[type=radio] {
+  display: none;
+}
+
+.campaign-amount a,
+#donate-form #edit-donation.form-radios label {
+  border: 0;
+  border-radius: 8px;
+  background: #99bf38;
+  color: #fff;
+  display: inline-block;
+  padding: 8px;
+  text-align: center;
+  width: 85px;
+}
+
+.campaign-amount a:hover,
+#donate-form #edit-donation.form-radios label:hover,
+#donate-form #edit-donation.form-radios input:checked + label {
+  background:  #cad0ba;
+  color: #212121;
+  text-decoration: none;
+}
+
+#donate-form .donation-data-amount {
+  align-items: center;
+  background: #f0f2f2;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 15px 0;
+  width: 100%;
+}
+
+#donate-form .donation-data-amount .form-item-amount {
+  margin: 0;
+  width: auto;
+}
+
+#donate-form .donation-data-amount #edit-time {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0 20px;
+}
+
+#donate-form .donation-data-amount #edit-time .form-item {
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: auto;
+}
+
+#donate-form .donation-data-amount .form-item label {
+  width: auto;
+}
+
+#donate-form .form-item-amount label {
+  margin-right: 10px;
+  width: auto;
+}
+
+#donate-form .form-item-amount input.form-number {
+  max-width: 175px;
+  margin-right: 5px;
+}
+
+/* Dedication section */
+#donate-form #edit-dedicate-donation {
+  margin: 25px 0 10px 0;
+}
+
+#donate-form #edit-dedicate-donation label {
+  width: auto;
+}
+
+#donate-form #edit-amount .fieldset-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#donate-form #edit-dedication-information {
+  background: #F8F8F8;
+  border: 0;
+  display: none;
+  margin-bottom: 35px;
+  padding: 20px 15px;
+  max-width: 95%;
+}
+
+#donate-form #edit-dedication-information legend {
+  border: 0;
+  margin: 0;
+}
+
+.campaign-donation p {
+  margin: 0;
+}
+
+.campaign-frequency {
+  display: flex;
+}
+
+.campaign-frequency label {
+  margin-right: 20px;
+}
+
+.campaign-frequency input {
+  margin-right: 5px;
+}
+
+.campaign-donation .currency {
+  font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+  font-size: 22px;
+  margin: 0 4px 0 17px;
+}
+
+.campaign-donation .campaign-currency {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 15px 0 5px;
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+
+  .campaign-form {
+    max-width: 670px;
+    margin: 0 auto;
+  }
+
+  .campaign-form fieldset#edit-date-start-0 .container-inline,
+  .campaign-form fieldset#edit-date-end-0 .container-inline {
+    width: 63%;
+  }
+
+  .create--child .date-item .form-text,
+  .campaign-personal--info .date-item .form-text {
+    max-width: 30%;
+  }
+
+  #donate-form div.form-actions {
+    margin-left: 37.5%;
+  }
+
+  #donate-form fieldset .fieldset-wrapper .description,
+  #donate-form fieldset .fieldset-wrapper .field-suffix {
+    margin-left: 33%;
+  }
+
+  #donate-form fieldset .form-item-recipient-message .description,
+  #donate-form fieldset .form-item-amount .field-suffix {
+    margin-left: 0;
+  }
+
+  #donate-form #edit-dedicate-donation {
+    margin: 25px 0 10px -80px;
+  }
+
+  #donate-form #edit-dedication-information {
+    max-width: 100%;
+    padding: 20px 0;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+
+  .create--child div.form-actions,
+  .campaign-personal--info div.form-actions {
+    margin-left: 0;
+  }
+
+  .create--child .form-item,
+  .campaign-personal--info .form-item {
+    align-items: left;
+    flex-direction: column;
+  }
+
+  .create--child .form-item label,
+  .create--child .date-item .form-text,
+  .create--child .form-item .form-text,
+  .campaign-personal--info .form-item label,
+  .campaign-personal--info .date-item .form-text,
+  .campaign-personal--info .form-item .form-text {
+    flex: 1;
+    width: 100%;
+  }
+
+  .create--child div.form-actions input,
+  .campaign-personal--info div.form-actions input {
+    width: 100%;
+  }
+
+  .create--child .form-item label,
+  .campaign-personal--info .form-item label {
+    color: #494949;
+    font-family: 'latobold', "Helvetica Neue",Arial,sans-serif;
+    font-size: 15px;
+  }
+
+  .campaign-form .form-wrapper label,
+  #donate-form .form-item label {
+    display: block;
+    width: auto;
+  }
+
+  .campaign-form .description {
+    margin-left: 0
+  }
+
+  .campaign-form fieldset input.form-time,
+  .campaign-form fieldset input.form-date {
+    max-width: 100%;
+  }
+
+  #donate-form #edit-donation {
+    flex-flow: row wrap;
+    max-width: 100%;
+  }
+
+  #donate-form #edit-donation .form-item {
+    margin: 5px 0;
+    width: auto;
+  }
+
+  #donate-form .form-item-amount,
+  #donate-form .edit-time {
+    max-width: 100%;
+  }
+
+  #donate-form #edit-dedicate-donation .form-item {
+    display: inline;
+  }
+
+  #donate-form .donation-data-amount {
+    padding: 15px 5px;
+  }
+
+  #donate-form .donation-data-amount #edit-time .form-item {
+    margin-bottom: 0;
+  }
+
+  #donate-form #edit-dedication-information {
+    max-width: 91%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #donate-form .data-dedication-info {
+    flex-wrap: wrap;
+  }
+
+  #donate-form div.data-dedication-info label,
+  #donate-form div.data-dedication-info .form-item {
+    width: 100%;
+  }
+
+  #donate-form .form-item-recipient-mail {
+    margin-bottom: 0;
+  }
+
+  #donate-form div.data-dedication-info .form-item-honoree-last-name,
+  #donate-form div.data-dedication-info .form-item-recipient-last-name {
+    margin: 0;
+  }
+
+  #donate-form .data-dedication-info #edit-honoree-first-name,
+  #donate-form .data-dedication-info #edit-honoree-last-name,
+  #donate-form .data-dedication-info #edit-recipient-first-name,
+  #donate-form .data-dedication-info #edit-recipient-last-name {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  #donate-form #edit-dedicate-type .form-item {
+    margin-left: 0;
+  }
+
+  .create--child div.form-actions,
+  .campaign-form div.form-actions {
+    margin: 16px 0 16px 0;
+  }
+
+  .campaign-personal--info .form-item select,
+  .campaign-form select,
+  #donate-form select {
+    width: 100%;
+  }
+
+  .create--child .form-item .form-text,
+  .campaign-personal--info .form-item .form-text,
+  .campaign-donation .form-text,
+  .campaign-form .form-text,
+  .campaign-form .form-number,
+  .campaign-form .form-email,
+  .campaign-form fieldset input,
+  #donate-form .form-text, #donate-form .form-email,
+  #donate-form .form-number {
+    width: 100%;
+  }
+
+  #donate-form .form-item-dedicate-donation-1 input[type="checkbox"]:checked + label::after {
+    top: 2px;
+  }
+
+  .campaign-form fieldset {
+    max-width: 93.5%;
+  }
+
+  .campaign-form fieldset#edit-date-start-0 .container-inline,
+  .campaign-form fieldset#edit-date-end-0 .container-inline {
+    display: block;
+    width: 100%;
+  }
+
+}

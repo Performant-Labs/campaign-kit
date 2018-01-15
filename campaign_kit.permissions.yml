@@ -1,0 +1,139 @@
+add campaign entities:
+  title: 'Create new Campaign entities'
+
+administer campaign entities:
+  title: 'Administer Campaign entities'
+  description: 'Allow to access the administration form to configure Campaign entities.'
+  restrict access: true
+
+delete campaign entities:
+  title: 'Delete Campaign entities'
+
+edit campaign entities:
+  title: 'Edit Campaign entities'
+
+view published campaign entities:
+  title: 'View published Campaign entities'
+
+view unpublished campaign entities:
+  title: 'View unpublished Campaign entities'
+
+view all campaign revisions:
+  title: 'View all Campaign revisions'
+
+revert all campaign revisions:
+  title: 'Revert all Campaign revisions'
+  description: 'Role requires permission <em>view Campaign revisions</em> and <em>edit rights</em> for campaign entities in question or <em>administer campaign entities</em>.'
+
+delete all campaign revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Campaign revisions</em> and <em>delete rights</em> for campaign entities in question or <em>administer campaign entities</em>.'
+add campaign donation entities:
+  title: 'Create new Campaign donation entities'
+
+administer campaign donation entities:
+  title: 'Administer Campaign donation entities'
+  description: 'Allow to access the administration form to configure Campaign donation entities.'
+  restrict access: true
+
+delete campaign donation entities:
+  title: 'Delete Campaign donation entities'
+
+edit campaign donation entities:
+  title: 'Edit Campaign donation entities'
+
+view published campaign donation entities:
+  title: 'View published Campaign donation entities'
+
+view unpublished campaign donation entities:
+  title: 'View unpublished Campaign donation entities'
+add campaign update entities:
+  title: 'Create new Campaign update entities'
+
+administer campaign update entities:
+  title: 'Administer Campaign update entities'
+  description: 'Allow to access the administration form to configure Campaign update entities.'
+  restrict access: true
+
+delete campaign update entities:
+  title: 'Delete Campaign update entities'
+
+edit campaign update entities:
+  title: 'Edit Campaign update entities'
+
+view published campaign update entities:
+  title: 'View published Campaign update entities'
+
+view unpublished campaign update entities:
+  title: 'View unpublished Campaign update entities'
+
+view all campaign update revisions:
+  title: 'View all Campaign update revisions'
+
+revert all campaign update revisions:
+  title: 'Revert all Campaign update revisions'
+  description: 'Role requires permission <em>view Campaign update revisions</em> and <em>edit rights</em> for campaign update entities in question or <em>administer campaign update entities</em>.'
+
+delete all campaign update revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Campaign update revisions</em> and <em>delete rights</em> for campaign update entities in question or <em>administer campaign update entities</em>.'
+add donation entities:
+  title: 'Create new Donation entities'
+
+administer donation entities:
+  title: 'Administer Donation entities'
+  description: 'Allow to access the administration form to configure Donation entities.'
+  restrict access: true
+
+delete donation entities:
+  title: 'Delete Donation entities'
+
+edit donation entities:
+  title: 'Edit Donation entities'
+
+view published donation entities:
+  title: 'View published Donation entities'
+
+view unpublished donation entities:
+  title: 'View unpublished Donation entities'
+
+view all donation revisions:
+  title: 'View all Donation revisions'
+
+revert all donation revisions:
+  title: 'Revert all Donation revisions'
+  description: 'Role requires permission <em>view Donation revisions</em> and <em>edit rights</em> for donation entities in question or <em>administer donation entities</em>.'
+
+delete all donation revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Donation revisions</em> and <em>delete rights</em> for donation entities in question or <em>administer donation entities</em>.'
+add campaign transaction entities:
+  title: 'Create new Campaign transaction entities'
+
+administer campaign transaction entities:
+  title: 'Administer Campaign transaction entities'
+  description: 'Allow to access the administration form to configure Campaign transaction entities.'
+  restrict access: true
+
+delete campaign transaction entities:
+  title: 'Delete Campaign transaction entities'
+
+edit campaign transaction entities:
+  title: 'Edit Campaign transaction entities'
+
+view published campaign transaction entities:
+  title: 'View published Campaign transaction entities'
+
+view unpublished campaign transaction entities:
+  title: 'View unpublished Campaign transaction entities'
+
+view all campaign transaction revisions:
+  title: 'View all Campaign transaction revisions'
+
+revert all campaign transaction revisions:
+  title: 'Revert all Campaign transaction revisions'
+  description: 'Role requires permission <em>view Campaign transaction revisions</em> and <em>edit rights</em> for campaign transaction entities in question or <em>administer campaign transaction entities</em>.'
+
+delete all campaign transaction revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Campaign transaction revisions</em> and <em>delete rights</em> for campaign transaction entities in question or <em>administer campaign transaction entities</em>.'

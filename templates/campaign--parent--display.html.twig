@@ -1,0 +1,219 @@
+{# Loading libraries for Facebook, Twitter, and Google + #}
+{% include '@campaign_kit/parts/campaign--social--sharing.html.twig' %}
+
+{# Loading styles for Campaign Kit Demo module #}
+{% if campaign.author == 'anonymous' %}
+  {{ attach_library('campaign_kit/demo-styling') }}
+{% endif %}
+
+{# Campaign #}
+{% if campaign.id != '' %}
+
+  <!-- Campaign entity -->
+  <div class="campaign">
+    {# Campaign banner #}
+    <div class="campaign-title">
+      <h1>{{ campaign.title }}</h1>
+    </div>
+    <!-- Campaign banner -->
+    <div class="campaign-banner">
+      {{ campaign.header_image}}
+    </div>
+    {# Campaign information #}
+    <!-- Campaign information -->
+    <div class="campaign-information">
+      <div class="campaign-description">
+
+        <div class="campaign-short-desc">
+          {{ campaign.description}}
+        </div>
+
+        {# Campaign tabs #}
+        <!-- Campaign tabs -->
+        <div class="tabs">
+
+          <div class="tab">
+            <input type="radio" id="supporters-tab" name="campaign-tabs" checked>
+            <label for="supporters-tab">{{ 'Supporters'|trans }}</label>
+
+            <div class="campaign-content--tab">
+              <div class="campaign-content--desc">
+
+                {% if campaign.supportersView is null %}
+                  <p class="empty-message">{{ 'There are no supporters for this campaign yet.'|trans }}</p>
+                {% else %}
+                  {{ campaign.supportersView }}
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+
+          <div class="tab">
+            <input type="radio" id="updates-tab" name="campaign-tabs">
+            <label for="updates-tab">{{ 'Updates'|trans }}</label>
+
+            <div class="campaign-content--tab">
+              <div class="campaign-content--desc">
+
+                {% if campaign.updatesView is null %}
+                  <p class="empty-message">{{ 'There are no updates for this campaign yet.'|trans }}</p>
+                {% else %}
+                  {{ campaign.updatesView }}
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div><!-- /.tabs -->
+
+      </div>
+      <div class="campaign-data">
+        <div class="campaign-status">
+          <div class="campaign-current">
+            <div  class = "progress-bar" >
+
+              {% if campaign.percentage <= '100%' %}
+                {{ ('<span style="width:' ~ campaign.percentage ~ '%;">') | raw }}
+              {% else %}
+                {% set campaign_percentage = '99.5' %}
+                {{ ('<span style="width:' ~ campaign_percentage ~ '%;">') | raw }}
+              {% endif %}
+
+            </div>
+            <div class="ammount-raised">
+              <span>${{ campaign.goalSaved|number_format }} {{ campaign.currency }}</span>
+            </div>
+            <div class="ammount-goal">
+              <span>{{ 'Raised of'|trans }} ${{ campaign.goal|number_format }} {{ campaign.currency }}</span>
+            </div>
+          </div>
+          <div class="campaign-percentage">
+            <div class="percentage">
+              <span>{{ campaign.percentage }}%</span>
+            </div>
+            <div class="percentage-text">
+              <span>{{ 'of goal'|trans }}</span>
+            </div>
+          </div>
+          <div class="campaign-time">
+            <div class="campaign-total-donors">
+              <div class="num-donors">
+                <span>{{ campaign.numSupporters }}</span>
+              </div>
+              <div class="supporters">
+                <label>
+                  Supporter{{ (campaign.numSupporters > 1) or (campaign.numSupporters == 0) ? 's' : '' }}
+                </label>
+              </div>
+            </div>
+            <div class="campaign-time-left">
+              {% if campaign.daysLeft.days >= 0 %}
+                <div class="num-days">
+                  <span>{{ campaign.daysLeft.days }}</span>
+                </div>
+                <div class="days-left">
+                  <label>{{ campaign.daysLeft.message }}</label>
+                </div>
+              {% else %}
+                <div class="days-left">
+                  <label>{{ campaign.daysLeft.message }}</label>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div><!-- /.campaign-status -->
+
+        {# Campaign button donate #}
+        <div class="campaign-donate">
+          {% if campaign.campaign_type == 'parent' %}
+            {{ campaign.participate_link }}
+          {% endif %}
+          {{ campaign.donate_link }}
+        </div>
+
+        {# Campaign social #}
+        <div class="campaign-social">
+          <ul>
+            <li>
+              <!--a href="{{ campaign.facebook_url }}" target="_blank" title="{#{ 'Share on Facebook'|trans }#}" class="facebook-icon">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                {#{ 'Share on Facebook'|trans }#}
+              </a-->
+
+              {# Facebook sharing URL #}
+              <!--div class="fb-share-button" data-href="http://dev-campaign-kit.pantheonsite.io/campaign/1" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdev-campaign-kit.pantheonsite.io%2Fcampaign%2F1&amp;src=sdkpreparse">Share on Facebook</a></div-->
+
+              {# Facebook sharing custom preview using Open Graph #}
+              <div class="fb-share-button"
+                data-href="{{ campaign.current_url }}"
+                data-layout="button" data-size="large">
+              </div>
+
+            </li>
+            <li>
+              <!--a href="{{ campaign.twitter_url }}" target="_blank" title="{#{ 'Share on Twitter'|trans }#}" class="twitter-icon">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                {#{ 'Share on Twitter'|trans }#}
+              </a-->
+              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Share on Twitter</a>
+            </li>
+            <li>
+              <!--a href="{{ campaign.google_url }}" target="_blank" title="{#{ 'Share on Google +'|trans }#}" class="google-icon">
+                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                {#{ 'Share on Google +'|trans }#}
+              </a-->
+              <div class="g-plus" data-action="share" data-height="24" data-href="http://dev-campaign-kit.pantheonsite.io/campaign/1"></div>
+            </li>
+            <li>
+              {{ campaign.email_friend_link }}
+            </li>
+            <li>
+              <i class="fa fa-link" aria-hidden="true"></i>
+              <input type="button" value="{{ 'Copy Page URL'|trans }}" onclick="copyCurrentUrl();" class="url-icon" />
+              <textarea id="current-url" rows="1" cols="30"></textarea>
+            </li>
+          </ul>
+        </div><!-- /.campaign-social -->
+        <div class="data-bottom">
+          <div class="time-status">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="label-time">{{ 'TIME LEFT'|trans }}: </span>
+            {{ (campaign.daysLeft.days >= 1) ? campaign.daysLeft.days : '' }}
+            {{ campaign.daysLeft.message }}
+          </div>
+          <div class="data-info">
+            <p class="organizer-info">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <b>{{ 'Organizer'|trans }}:</b> {{ site_name }}
+            </p>
+            <p class="beneficiary-info">
+              <i class="fa fa-umbrella" aria-hidden="true"></i>
+              <b>{{ 'Beneficiary'|trans }}:</b> {{ site_name }}
+            </p>
+          </div>
+          <div class="subscribe">
+            {{ campaign.subscribe_link }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+{% else %}
+  <div class="campaign">
+    <div class="campaign-title">
+      <h1>{{ "Sorry, we can't find your campaign."|trans }}</h1>
+    </div>
+    <p class="campaign-desc">
+      {% trans %}
+        Please check the <b>Campaign ID.</b>
+      {% endtrans %}
+    </p>
+    <p class="campaign-info">
+      {{ campaign.home_page_link }}
+    </p>
+  </div>
+{% endif %}

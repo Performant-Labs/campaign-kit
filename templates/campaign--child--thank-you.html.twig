@@ -1,0 +1,44 @@
+{{ attach_library('campaign_kit/demo-styling') }}
+<div class="thanks-page campaign">
+  <div class="campaign-thankyou-header">
+    <div class="campaign-header-image">
+      {{ campaignChild.header_image }}
+    </div>
+    <div class="campaign-title">
+      <h1>{{ campaignChild.donation_page_title }}</h1>
+    </div>
+  </div>
+  <p>
+    {{ campaignChild.thankyou_message }}
+  </p>
+  <p class="campaign-desc">
+    Please <b>check your inbox</b> for an email confirmation.
+  </p>
+
+
+  {% if campaignChild.dedicate_donation == '1' %}
+
+    <div class="honor-details">
+      <h2 class="campaign-subtitle">Details of the dedication</h2>
+      <p><b>Recipient’s Info:</b> {{ campaignChild.recipient_mail }}</p>
+      <p><b>Recipient's Name:</b> {{ campaignChild.recipient_first_name }} {{ campaignChild.recipient_last_name }}</p>
+      <p class="memory-detail">
+        Your gift has been made
+        {% if campaignChild.dedicate_type == 'in_honor_of' %}
+          <span> {{ 'in honor of'|trans }} </span>
+        {% else %}
+          <span> {{ 'in memory of'|trans }} </span>
+        {% endif %}
+        <b>{{ campaignChild.honoree_first_name }} {{ campaignChild.honoree_last_name }}</b>
+      </p>
+      <div class="memory-description">
+        {{ campaignChild.recipient_message }}
+      </div>
+    </div>
+
+  {% endif %}
+
+  <p class="campaign-info">
+    {{ campaignChild.back_to_campaign_link }}
+  </p>
+</div><!-- /.thanks-page .campaign -->
